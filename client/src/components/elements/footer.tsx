@@ -56,14 +56,14 @@ export default function Footer() {
 						</Button>
 					</div>
 				</div>
-				<div className='flex justify-start items-center mt-8'>
+				{/* <div className='flex justify-start items-center mt-8'>
 					<Facebook />
 					<Twitter className='ml-4' />
 					<Linkedin className='ml-4' />
 					<Instagram className='ml-4' />
-				</div>
+				</div> */}
 				<div className='flex flex-col md:flex-row items-center justify-center mt-8 w-full'>
-					<p className='px-4 text-center'>© 2024 Wautopilot, All rights reserved.</p>
+					<p className='px-4 text-center'>Copyright ©</p>
 				</div>
 			</div>
 		</footer>
