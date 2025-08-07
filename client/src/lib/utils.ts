@@ -5,6 +5,12 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
 }
 
+export function debugPrint(...args: any[]) {
+	if (process.env.NODE_ENV !== 'production') {
+		console.log(...args);
+	}
+}
+
 export const getMonth = (month: number, fullName = false) => {
 	const MONTHS = {
 		'1': 'January',
