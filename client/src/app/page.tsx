@@ -1,5 +1,3 @@
-import Navbar from '@/components/elements/Navbar';
-import Footer from '@/components/elements/footer';
 import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import { Button } from '@/components/ui/button';
 import { DirectionAwareHover } from '@/components/ui/direction-aware-hover';
@@ -63,7 +61,6 @@ const people = [
 export default async function Home() {
 	return (
 		<div className='h-screen overflow-x-hidden overflow-y-scroll pt=[70px] min-h-screen'>
-			<Navbar />
 			<div className='relative flex min-h-screen flex-col justify-center overflow-hidden w-full rounded-md z-0'>
 				<div className='relative flex w-full flex-1 justify-center isolate z-0 flex-col'>
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full px-4 md:px-8 justify-center'>
@@ -129,7 +126,13 @@ export default async function Home() {
 							</div>
 						</div>
 						<div className='relative hidden md:block h-full'>
-							<Image src={HERO_IMAGE} width={390} height={540} alt='' className='min-h-full aspect-auto' />
+							<Image
+								src={HERO_IMAGE}
+								width={390}
+								height={540}
+								alt=''
+								className='min-h-full aspect-auto'
+							/>
 							<div className='absolute -z-10 right-0 bottom-0 h-[70%] w-[50%] bg-primary rounded-xl'></div>
 							<div className='absolute  hidden top-[80%]  h-min -left-[50%] lg:flex items-center justify-center flex-row bg-white p-4 rounded-lg shadow-lg gap-4'>
 								<div>
@@ -147,7 +150,6 @@ export default async function Home() {
 					</div>
 				</div>
 			</div>
-			<Footer />
 		</div>
 	);
 }

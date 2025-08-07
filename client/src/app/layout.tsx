@@ -1,4 +1,7 @@
 import PageLayout from '@/components/containers/page-layout';
+import Navbar from '@/components/elements/Navbar';
+import PrefetchRoutes from '@/components/elements/PrefetchRoutes';
+import Footer from '@/components/elements/footer';
 import Loading from '@/components/elements/loading';
 import { ThemeProvider } from '@/components/ui/theme-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -34,9 +37,12 @@ export default async function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
+					<PrefetchRoutes />
 					<PageLayout>
 						<TooltipProvider>
+							<Navbar />
 							<Suspense fallback={<Loading />}>{children}</Suspense>
+							<Footer />
 						</TooltipProvider>
 					</PageLayout>
 					<Toaster position='top-center' />

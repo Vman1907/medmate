@@ -1,14 +1,14 @@
 'use client';
-import { Paths, SLEEK_LOGO, SLEEK_LOGO_WHITE } from '@/lib/consts';
+import { Paths } from '@/lib/consts';
 import { MenuIcon, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '../ui/button';
 import { Menubar, MenubarMenu, MenubarTrigger } from '../ui/menubar';
 import { ThemeToggle } from '../ui/theme-toggle';
 import AuthDialog from './dialogs/auth';
+import Logo from './logo';
 
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
@@ -21,14 +21,8 @@ export default function Navbar() {
 					<div className='flex-1'>
 						<MenubarMenu>
 							<MenubarTrigger>
-								<Link href={Paths.HOME.LANDING}>
-									<Image
-										src={theme === 'dark' ? SLEEK_LOGO_WHITE : SLEEK_LOGO}
-										alt={`Medmate-${theme}-logo`}
-										width={120}
-										height={100}
-										className='text-white'
-									/>
+								<Link href={Paths.LANDING} className='inline-flex items-center gap-2'>
+									<Logo />
 								</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
@@ -36,23 +30,23 @@ export default function Navbar() {
 					<div className='flex gap-4'>
 						<MenubarMenu>
 							<MenubarTrigger>
-								<Link href={Paths.HOME.HOME_VISIT}>Home Visit</Link>
+								<Link href={Paths.HOME_VISIT}>Home Visit</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
 
 						<MenubarMenu>
 							<MenubarTrigger>
-								<Link href={Paths.HOME.CONSULTATION}>Consultation</Link>
+								<Link href={Paths.CONSULTATION}>Consultation</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
 						<MenubarMenu>
 							<MenubarTrigger>
-								<Link href={Paths.HOME.SERVICES}>Services</Link>
+								<Link href={Paths.SERVICES}>Services</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
 						<MenubarMenu>
 							<MenubarTrigger>
-								<Link href={Paths.HOME.CONTACT_US}>Contact Us</Link>
+								<Link href={Paths.CONTACT_US}>Contact Us</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
 						<MenubarMenu>
@@ -76,10 +70,10 @@ export default function Navbar() {
 				</Button>
 				{isOpen && (
 					<div className='absolute top-0 left-0 bg-white dark:bg-slate-900 z-10 flex flex-col gap-4 p-4 min-w-[100vw] min-h-[100vh] justify-center items-center underline underline-offset-8'>
-						<Link href={Paths.HOME.HOME_VISIT}>Home Visit</Link>
-						<Link href={Paths.HOME.CONSULTATION}>Consultation</Link>
-						<Link href={Paths.HOME.SERVICES}>Services</Link>
-						<Link href={Paths.HOME.CONTACT_US}>Contact Us</Link>
+						<Link href={Paths.HOME_VISIT}>Home Visit</Link>
+						<Link href={Paths.CONSULTATION}>Consultation</Link>
+						<Link href={Paths.SERVICES}>Services</Link>
+						<Link href={Paths.CONTACT_US}>Contact Us</Link>
 
 						<Button
 							variant='ghost'

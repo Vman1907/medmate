@@ -66,7 +66,9 @@ export default function Footer() {
 					</div>
 				</div>
 				<div className='flex flex-col md:flex-row items-center justify-center mt-8 w-full'>
-					<p className='px-4 text-center'>Copyright © medmate.in</p>
+					<p className='px-4 text-center text-gray-100 dark:text-gray-100'>
+						Copyright © medmate.in
+					</p>
 				</div>
 			</div>
 		</footer>

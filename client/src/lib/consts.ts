@@ -11,19 +11,11 @@ export const OPD_CONSULTATION_IMAGE = '/images/opd_consultation.png';
 export const HOME_VISIT_IMAGE = '/images/home_visit.png';
 
 export const Paths = {
-	HOME: {
-		LANDING: '/',
-		HOME_VISIT: '/home-visit',
-		CONSULTATION: '/consultation',
-		SERVICES: '/services',
-		CONTACT_US: '/contact-us',
-	},
-	AUTH: {
-		LOGIN: '/auth/login',
-		REGISTER: '/auth/register',
-		FORGOT_PASSWORD: '/auth/forgot-password',
-		RESET_PASSWORD: '/auth/reset-password',
-	},
+	LANDING: '/',
+	HOME_VISIT: '/home-visit',
+	CONSULTATION: '/consultation',
+	SERVICES: '/services',
+	CONTACT_US: '/contact-us',
 };
 
 export const COLORS = {

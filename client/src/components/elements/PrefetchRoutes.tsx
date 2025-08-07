@@ -10,7 +10,7 @@ export default function PrefetchRoutes() {
 	useEffect(() => {
 		const prefetchAll = async () => {
 			for (const route of Object.values(Paths)) {
-				router.prefetch(`/panel${route}`);
+				router.prefetch(route);
 				debugPrint('✅ Prefetched:', route);
 			}
 		};
