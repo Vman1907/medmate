@@ -5,6 +5,10 @@ export const SLEEK_LOGO = '/images/sleek-logo.svg';
 export const SLEEK_LOGO_WHITE = '/images/sleek-logo-light.svg';
 export const SERVER_URL = process.env.NEXT_PUBLIC_API_URL;
 export const HERO_IMAGE = '/images/hero_doctor.png';
+export const LAB_AT_HOME_IMAGE = '/images/lab_at_home.png';
+export const NURSING_AT_HOME_IMAGE = '/images/nursing_at_home.png';
+export const OPD_CONSULTATION_IMAGE = '/images/opd_consultation.png';
+export const HOME_VISIT_IMAGE = '/images/home_visit.png';
 
 export const Paths = {
 	HOME: {

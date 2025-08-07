@@ -1,8 +1,64 @@
 import Navbar from '@/components/elements/Navbar';
 import Footer from '@/components/elements/footer';
+import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import { Button } from '@/components/ui/button';
-import { HERO_IMAGE } from '@/lib/consts';
+import { DirectionAwareHover } from '@/components/ui/direction-aware-hover';
+import {
+	HERO_IMAGE,
+	HOME_VISIT_IMAGE,
+	LAB_AT_HOME_IMAGE,
+	NURSING_AT_HOME_IMAGE,
+	OPD_CONSULTATION_IMAGE,
+} from '@/lib/consts';
 import Image from 'next/image';
+
+const imageUrl =
+	'https://images.unsplash.com/photo-1663765970236-f2acfde22237?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
+
+const people = [
+	{
+		id: 1,
+		name: 'John Doe',
+		designation: 'Software Engineer',
+		image:
+			'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3387&q=80',
+	},
+	{
+		id: 2,
+		name: 'Robert Johnson',
+		designation: 'Product Manager',
+		image:
+			'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60',
+	},
+	{
+		id: 3,
+		name: 'Jane Smith',
+		designation: 'Data Scientist',
+		image:
+			'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YXZhdGFyfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60',
+	},
+	{
+		id: 4,
+		name: 'Emily Davis',
+		designation: 'UX Designer',
+		image:
+			'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60',
+	},
+	{
+		id: 5,
+		name: 'Tyler Durden',
+		designation: 'Soap Developer',
+		image:
+			'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3540&q=80',
+	},
+	{
+		id: 6,
+		name: 'Dora',
+		designation: 'The Explorer',
+		image:
+			'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3534&q=80',
+	},
+];
 
 export default async function Home() {
 	return (
@@ -10,8 +66,8 @@ export default async function Home() {
 			<Navbar />
 			<div className='relative flex min-h-screen flex-col justify-center overflow-hidden w-full rounded-md z-0'>
 				<div className='relative flex w-full flex-1 justify-center isolate z-0 flex-col'>
-					<div className='grid grid-cols-1 md:grid-cols-3 gap-4 w-full px-4 md:px-8 items-center justify-center'>
-						<div className='col-span-2'>
+					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full px-4 md:px-8 justify-center'>
+						<div className='text-center md:text-left col-span-1 lg:col-span-2 mt-8 md:mt-[10%] flex flex-col gap-4'>
 							<div className='text-4xl font-medium mb-8'>
 								<p>Priorities your health Experience</p>
 								<p>with Exceptional Care.</p>
@@ -21,44 +77,72 @@ export default async function Home() {
 								tests to home nursing and OPD consultations. Convenient, reliable, and trusted by
 								1345+ happy patients.
 							</p>
-							<div className='flex flex-col md:flex-row items-center justify-start gap-4 mt-8'>
-								<div className='flex flex-col items-center justify-center shadow-lg rounded-lg bg-white overflow-hidden'>
-									<div className='flex flex-col items-center justify-center gap-2 p-4'>
-										<div className='text-sm'>Doctor Home Visit</div>
-										<Button className='!py-0 px-4 h-min'>Book Now</Button>
-									</div>
-									<div className='w-full aspect-video bg-red-500'></div>
-									<img src='' />
+							<div className='flex flex-wrap md:flex-row items-center justify-center md:justify-start gap-4 mt-8'>
+								<div className='relative flex items-center justify-center'>
+									<DirectionAwareHover
+										imageUrl={HOME_VISIT_IMAGE}
+										className='!w-[10rem] !h-[10rem]'
+									>
+										<p className='font-bold'>Doctor Home Visit</p>
+										<Button className='h-min py-0 px-2'>Book Now</Button>
+									</DirectionAwareHover>
 								</div>
-								<div className='flex flex-col items-center justify-center shadow-lg rounded-lg bg-white overflow-hidden'>
-									<div className='flex flex-col items-center justify-center gap-2 p-4'>
-										<div className='text-sm'>Doctor Home Visit</div>
-										<Button className='!py-0 px-4 h-min'>Book Now</Button>
-									</div>
-									<div className='w-full aspect-video bg-red-500'></div>
-									<Image src='' alt='' />
+								<div className='relative flex items-center justify-center'>
+									<DirectionAwareHover
+										imageUrl={LAB_AT_HOME_IMAGE}
+										className='!w-[10rem] !h-[10rem]'
+									>
+										<p className='font-bold'>Lab Test at Home</p>
+										<Button className='h-min py-0 px-2'>Book Now</Button>
+									</DirectionAwareHover>
 								</div>
-								<div className='flex flex-col items-center justify-center shadow-lg rounded-lg bg-white overflow-hidden'>
-									<div className='flex flex-col items-center justify-center gap-2 p-4'>
-										<div className='text-sm'>Doctor Home Visit</div>
-										<Button className='!py-0 px-4 h-min'>Book Now</Button>
-									</div>
-									<div className='w-full aspect-video bg-red-500'></div>
-									<img src='' />
+								<div className='relative flex items-center justify-center'>
+									<DirectionAwareHover
+										imageUrl={NURSING_AT_HOME_IMAGE}
+										className='!w-[10rem] !h-[10rem]'
+									>
+										<p className='font-bold'>Nursing at Home</p>
+										<Button className='h-min py-0 px-2'>Book Now</Button>
+									</DirectionAwareHover>
 								</div>
-								<div className='flex flex-col items-center justify-center shadow-lg rounded-lg bg-white overflow-hidden'>
-									<div className='flex flex-col items-center justify-center gap-2 p-4'>
-										<div className='text-sm'>Doctor Home Visit</div>
-										<Button className='!py-0 px-4 h-min'>Book Now</Button>
+								<div className='relative flex items-center justify-center'>
+									<DirectionAwareHover
+										imageUrl={OPD_CONSULTATION_IMAGE}
+										className='!w-[10rem] !h-[10rem]'
+									>
+										<p className='font-bold'>OPD consultation</p>
+										<Button className='h-min py-0 px-2'>Book Now</Button>
+									</DirectionAwareHover>
+								</div>
+							</div>
+							<div className='lg:hidden  h-min flex items-center justify-center flex-row bg-white p-4 rounded-lg shadow-lg gap-4'>
+								<div>
+									<div>Our Patients</div>
+									<div className='flex items-center justify-center'>
+										<AnimatedTooltip items={people} />
 									</div>
-									<div className='w-full aspect-video bg-red-500'></div>
-									<img src='' />
+								</div>
+								<div className='bg-primary text-white rounded-lg p-4 flex flex-col items-center justify-center ml-4 text-center '>
+									<div>+1345</div>
+									<div>Happy Patients</div>
 								</div>
 							</div>
 						</div>
-						<div className='relative hidden md:block'>
-							<Image src={HERO_IMAGE} width={390} height={540} alt='' />
+						<div className='relative hidden md:block h-full'>
+							<Image src={HERO_IMAGE} width={390} height={540} alt='' className='min-h-full aspect-auto' />
 							<div className='absolute -z-10 right-0 bottom-0 h-[70%] w-[50%] bg-primary rounded-xl'></div>
+							<div className='absolute  hidden top-[80%]  h-min -left-[50%] lg:flex items-center justify-center flex-row bg-white p-4 rounded-lg shadow-lg gap-4'>
+								<div>
+									<div>Our Patients</div>
+									<div className='flex items-center justify-center'>
+										<AnimatedTooltip items={people} />
+									</div>
+								</div>
+								<div className='bg-primary text-white rounded-lg p-4 flex flex-col items-center justify-center ml-4 text-center '>
+									<div>+1345</div>
+									<div>Happy Patients</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
