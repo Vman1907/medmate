@@ -1,6 +1,8 @@
 export const LOGO_WHITE = '/images/logo-white.svg';
 export const LOGO_PRIMARY = '/images/logo-primary.png';
 export const NOT_FOUND = '/images/not-found.svg';
+export const SLEEK_LOGO = '/images/sleek-logo.svg';
+export const SLEEK_LOGO_WHITE = '/images/sleek-logo-light.svg';
 export const SERVER_URL = process.env.NEXT_PUBLIC_API_URL;
 export const HERO_IMAGE = '/images/hero_doctor.png';
 
