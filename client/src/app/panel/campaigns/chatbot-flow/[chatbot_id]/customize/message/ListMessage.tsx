@@ -1,0 +1,255 @@
+'use client';
+import Each from '@/components/containers/each';
+import { default as Asterisk } from '@/components/elements/Asterisk';
+import AbsoluteCenter from '@/components/ui/absolute-center';
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import {
+	Dialog,
+	DialogContent,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from '@/components/ui/select';
+import { Separator } from '@/components/ui/separator';
+import { Textarea } from '@/components/ui/textarea';
+import { parseToSeconds, randomString } from '@/lib/utils';
+import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import { AddButton, ListButtons } from '../_components/buttons';
+import { AddSection } from '../_components/section';
+
+export type ListMessageProps = {
+	onListMessageAdded: (details: {
+		header: string;
+		body: string;
+		footer: string;
+		sections: {
+			title: string;
+			buttons: {
+				id: string;
+				text: string;
+			}[];
+		}[];
+		delay: number;
+		reply_to_message: boolean;
+	}) => void;
+	children: React.ReactNode;
+};
+
+const ListMessage = ({ onListMessageAdded, children }: ListMessageProps) => {
+	const buttonRef = React.useRef<HTMLButtonElement>(null);
+	const [reply_to_message, setReplyToMessage] = useState(false);
+	const [header, setHeader] = useState('');
+	const [body, setBody] = useState('');
+	const [footer, setFooter] = useState('');
+	const [delay, setDelay] = useState(0);
+	const [delayType, setDelayType] = useState<'sec' | 'min' | 'hour'>('sec');
+	const [sections, setSections] = useState<
+		{
+			title: string;
+			buttons: {
+				id: string;
+				text: string;
+			}[];
+		}[]
+	>([]); // [header, body, footer
+
+	const handleSave = () => {
+		if (!body || !sections.length) return;
+		let totalButtons = 0;
+		for (const section of sections) {
+			const unique = new Set(section.buttons.map((button) => button));
+			totalButtons += section.buttons.length;
+			if (unique.size !== section.buttons.length) {
+				return toast.error('Button text should be unique');
+			} else if (section.buttons.length === 0 || section.buttons.length > 10) {
+				return toast.error('Each section should have at least 1 button and at most 10 buttons');
+			} else if (totalButtons > 10) {
+				return toast.error('You can only have 10 buttons in total');
+			}
+		}
+		onListMessageAdded({
+			header,
+			body,
+			footer,
+			sections,
+			delay: parseToSeconds(delay, delayType),
+			reply_to_message,
+		});
+		buttonRef.current?.click();
+	};
+
+	const removeButton = (sectionIndex: number, buttonIndex: number) => {
+		const newSections = [...sections];
+		newSections[sectionIndex].buttons.splice(buttonIndex, 1);
+		setSections(newSections);
+	};
+
+	function addButtonToSection(sectionIndex: number, buttonText: string): void {
+		if (!buttonText) return;
+		const newSections = [...sections];
+		if (!newSections[sectionIndex].buttons) {
+			newSections[sectionIndex].buttons = [];
+		}
+		newSections[sectionIndex].buttons.push({
+			id: randomString(),
+			text: buttonText,
+		});
+		setSections(newSections);
+	}
+
+	function RenderButtons({
+		sectionIndex,
+		buttons,
+	}: {
+		sectionIndex: number;
+		buttons: {
+			id: string;
+			text: string;
+		}[];
+	}) {
+		return (
+			<>
+				<ListButtons
+					buttons={buttons}
+					onRemove={(id, index) => removeButton(sectionIndex, index)}
+				/>
+				<AddButton
+					isDisabled={buttons.length >= 10}
+					onSubmit={(data) => {
+						addButtonToSection(sectionIndex, data.text);
+					}}
+				/>
+			</>
+		);
+	}
+
+	function RenderSections() {
+		return (
+			<Each
+				items={sections}
+				render={(section, sectionIndex) => (
+					<>
+						<AbsoluteCenter>Section : {section.title}</AbsoluteCenter>
+
+						<RenderButtons sectionIndex={sectionIndex} buttons={section.buttons} />
+					</>
+				)}
+			/>
+		);
+	}
+
+	const addSections = (data: { id: string; text: string }) => {
+		if (!data.text || sections.length >= 10) {
+			toast.error('You can only have 10 sections.');
+			return;
+		}
+		setSections([...sections, { title: data.text, buttons: [] }]);
+	};
+
+	return (
+		<Dialog>
+			<DialogTrigger ref={buttonRef} asChild>
+				{children}
+			</DialogTrigger>
+			<DialogContent className='sm:max-w-[425px] md:max-w-lg lg:max-w-2xl'>
+				<DialogHeader>
+					<DialogTitle>List Message</DialogTitle>
+				</DialogHeader>
+				<div className='font-medium text-red-500 text-sm'>*Only 10 buttons can be added in total.</div>
+				<div className='max-h-[70vh] grid gap-2 overflow-y-auto px-0'>
+					<div>
+						<div className='flex items-center justify-between w-full'>
+							<p className='text-sm mt-2'>Enter Header text.</p>
+							<div className='space-y-0 inline-flex items-center gap-2'>
+								<Checkbox
+									checked={reply_to_message}
+									onCheckedChange={(checked) => setReplyToMessage(checked.valueOf() as boolean)}
+								/>
+								<div className='text-sm'>Reply</div>
+							</div>
+						</div>
+						<Input
+							placeholder={'Enter your header text here.'}
+							value={header}
+							onChange={(e) => setHeader(e.target.value)}
+						/>
+					</div>
+					<div>
+						<p className='text-sm mt-2'>
+							Enter Body Text <Asterisk />
+						</p>
+						<Textarea
+							className='w-full h-[100px] resize-none !ring-0'
+							placeholder={'Enter your body text here.'}
+							value={body}
+							onChange={(e) => setBody(e.target.value)}
+						/>
+					</div>
+					<div>
+						<p className='text-sm mt-2'>Enter Footer Text</p>
+						<Input
+							placeholder={'Enter your footer text here.'}
+							value={footer}
+							onChange={(e) => setFooter(e.target.value)}
+						/>
+					</div>
+					<AbsoluteCenter>Menu Sections</AbsoluteCenter>
+					<RenderSections />
+
+					<Separator className='bg-gray-400' />
+
+					<AddSection placeholder={'Create a new section. \nex. Menu 1'} onSubmit={addSections} />
+				</div>
+
+				<Separator />
+				<DialogFooter>
+					<div className='inline-flex items-center gap-2 mr-auto'>
+						<p className='text-sm'>Send after</p>
+						<Input
+							className='w-20'
+							placeholder={'Enter delay in seconds'}
+							value={delay.toString()}
+							onChange={(e) => setDelay(Number(e.target.value))}
+						/>
+						<Select
+							value={delayType}
+							onValueChange={(val: 'sec' | 'min' | 'hour') => setDelayType(val)}
+						>
+							<SelectTrigger className='w-[180px]'>
+								<SelectValue placeholder='Select one' />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectGroup>
+									<SelectItem value='sec'>Seconds</SelectItem>
+									<SelectItem value='min'>Minutes</SelectItem>
+									<SelectItem value='hour'>Hours</SelectItem>
+								</SelectGroup>
+							</SelectContent>
+						</Select>
+					</div>
+					{/* <DialogClose asChild> */}
+					<Button type='submit' disabled={sections.length === 0} onClick={handleSave}>
+						Save
+					</Button>
+					{/* </DialogClose> */}
+				</DialogFooter>
+			</DialogContent>
+		</Dialog>
+	);
+};
+
+ListMessage.displayName = 'ListMessage';
+
+export default ListMessage;

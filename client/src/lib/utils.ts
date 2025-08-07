@@ -1,4 +1,4 @@
-import { clsx, type ClassValue } from 'clsx';
+import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
@@ -110,26 +110,13 @@ export function getInitials(fullName: string) {
 		.toUpperCase();
 }
 
-export function parseSecondsTo(seconds: number, type: 'sec' | 'min' | 'hour') {
-	if (type === 'sec') {
-		return seconds;
-	} else if (type === 'min') {
-		return Math.floor(seconds / 60);
-	} else if (type === 'hour') {
-		return Math.floor(seconds / 3600);
+export function randomString(length: number = 6) {
+	const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	let result = '';
+	for (let i = length; i > 0; --i) {
+		result += chars[Math.floor(Math.random() * chars.length)];
 	}
-	return seconds;
-}
-
-export function parseToSeconds(value: number, type: 'sec' | 'min' | 'hour') {
-	if (type === 'sec') {
-		return value;
-	} else if (type === 'min') {
-		return Math.floor(value) * 60;
-	} else if (type === 'hour') {
-		return Math.floor(value) * 3600;
-	}
-	return value;
+	return result;
 }
 
 export function debounce(callback: (...args: any[]) => void, delay: number) {
@@ -140,4 +127,27 @@ export function debounce(callback: (...args: any[]) => void, delay: number) {
 			callback(...args);
 		}, delay);
 	};
+}
+
+export function getFileType(mimeType: string) {
+	if (mimeType.startsWith('image')) {
+		return 'image';
+	} else if (mimeType.startsWith('video')) {
+		return 'video';
+	} else if (mimeType.startsWith('audio')) {
+		return 'audio';
+	} else if (mimeType.startsWith('application/pdf')) {
+		return 'PDF';
+	}
+	return 'file';
+}
+
+export function downloadBlob(blob: Blob, filename: string = 'download', mimeType: string) {
+	const url = window.URL.createObjectURL(blob);
+	const a = document.createElement('a');
+	a.href = url;
+	const ext = getFileType(mimeType);
+	a.download = `${filename}.${ext}`;
+	a.click();
+	window.URL.revokeObjectURL(url);
 }

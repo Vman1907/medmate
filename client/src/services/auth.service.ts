@@ -1,0 +1,243 @@
+import { Preferences } from '@/components/context/user-details';
+import { apiClient } from '@/lib/apiClient';
+import { signupSchema } from '@/schema/auth';
+import { Permissions } from '@/types/permissions';
+import { z } from 'zod';
+
+type AuthResponse = {
+	authenticated: boolean;
+	isAdmin: boolean;
+	isAgent: boolean;
+	isMaster: boolean;
+};
+
+interface UserDetailsResponse {
+	account: {
+		name: string;
+		email: string;
+		phone: string;
+		isSubscribed: boolean;
+		subscription_expiry: string;
+		walletBalance: number;
+		max_devices: number;
+		no_of_devices: number;
+		permissions: Record<string, any>; // You might want to define a more specific type for permissions
+		isMaster: boolean;
+		isAdmin: boolean;
+		isAgent: boolean;
+		preferences: Preferences;
+	};
+}
+
+interface PaymentResponse {
+	transaction_id: string;
+	razorpay_options: {
+		description: string;
+		currency: string;
+		amount: number;
+		name: string;
+		order_id: string;
+		prefill: {
+			name: string;
+			email: string;
+			contact: string;
+		};
+		key: string;
+		theme: {
+			color: string;
+		};
+	};
+}
+
+export default class AuthService {
+	static async isAuthenticated() {
+		try {
+			const data = await apiClient.getWithoutCache<AuthResponse>('/sessions/validate-auth');
+			return {
+				authenticated: true,
+				admin: data.isAdmin,
+				agent: data.isAgent,
+				master: data.isMaster,
+			};
+		} catch (err) {
+			return {
+				authenticated: false,
+				admin: false,
+				agent: false,
+				master: false,
+			};
+		}
+	}
+
+	static async login(email: string, password: string) {
+		try {
+			const data = await apiClient.post<AuthResponse>('/sessions/login', {
+				email,
+				password,
+			});
+			return {
+				authenticated: true,
+				admin: data.isAdmin,
+				agent: data.isAgent,
+				master: data.isMaster,
+			};
+		} catch (err) {
+			return {
+				authenticated: false,
+				admin: false,
+				agent: false,
+				master: false,
+			};
+		}
+	}
+
+	static async logout() {
+		try {
+			await apiClient.post(`/sessions/logout`);
+			return true;
+		} catch (err) {
+			return false;
+		}
+	}
+
+	static async register(details: z.infer<typeof signupSchema>) {
+		try {
+			const data = await apiClient.post<AuthResponse>('/sessions/register', {
+				name: `${details.firstName} ${details.lastName}`.trim(),
+				phone: details.phone,
+				email: details.email,
+				password: details.password,
+			});
+			return {
+				authenticated: true,
+				admin: data.isAdmin,
+				agent: data.isAgent,
+				master: data.isMaster,
+			};
+		} catch (err) {
+			return {
+				authenticated: false,
+				admin: false,
+				agent: false,
+				master: false,
+			};
+		}
+	}
+
+	static async forgotPassword(email: string, callbackURL: string) {
+		try {
+			await apiClient.post('/sessions/forgot-password', {
+				email,
+				callbackURL,
+			});
+			return true;
+		} catch (err) {
+			return false;
+		}
+	}
+
+	static async resetPassword(password: string, code: string) {
+		try {
+			await apiClient.post(`/sessions/reset-password/${code}`, {
+				password,
+			});
+			return true;
+		} catch (err) {
+			return false;
+		}
+	}
+
+	static async userDetails() {
+		try {
+			const data = await apiClient.getWithoutCache<UserDetailsResponse>('/sessions/details');
+			return {
+				name: data.account.name ?? '',
+				email: data.account.email ?? '',
+				phone: data.account.phone ?? '',
+				isSubscribed: data.account.isSubscribed ?? false,
+				subscription_expiry: data.account.subscription_expiry ?? '',
+				walletBalance: data.account.walletBalance ?? 0,
+				max_devices: data.account.max_devices ?? 0,
+				no_of_devices: data.account.no_of_devices ?? 0,
+				permissions: data.account.permissions ?? {},
+				isMaster: data.account.isMaster ?? false,
+				isAdmin: data.account.isAdmin ?? false,
+				isAgent: data.account.isAgent ?? false,
+				preferences: data.account.preferences ?? {
+					media_download: 'off',
+				},
+			} as {
+				name: string;
+				email: string;
+				phone: string;
+				isSubscribed: boolean;
+				subscription_expiry: string;
+				walletBalance: number;
+				max_devices: number;
+				no_of_devices: number;
+				permissions: Permissions;
+				isMaster: boolean;
+				isAdmin: boolean;
+				isAgent: boolean;
+				preferences: Preferences;
+			};
+		} catch (err) {
+			return null;
+		}
+	}
+
+	static async addMoney(amount: number) {
+		try {
+			const data = await apiClient.post<PaymentResponse>('payment/add-money', {
+				amount,
+			});
+			return {
+				transaction_id: data.transaction_id ?? '',
+				razorpay_options: {
+					description: data.razorpay_options.description ?? '',
+					currency: data.razorpay_options.currency ?? '',
+					amount: data.razorpay_options.amount ?? 0,
+					name: data.razorpay_options.name ?? '',
+					order_id: data.razorpay_options.order_id ?? '',
+					prefill: {
+						name: data.razorpay_options.prefill.name ?? '',
+						email: data.razorpay_options.prefill.email ?? '',
+						contact: data.razorpay_options.prefill.contact ?? '',
+					},
+					key: data.razorpay_options.key ?? '',
+					theme: {
+						color: data.razorpay_options.theme.color ?? '',
+					},
+				},
+			} as PaymentResponse;
+		} catch (err) {
+			return null;
+		}
+	}
+
+	static async confirmPayment(transaction_id: string) {
+		try {
+			await apiClient.post(`/payment/confirm-transaction/${transaction_id}`);
+			return true;
+		} catch (err) {
+			return false;
+		}
+	}
+
+	static async serviceAccount(id: string) {
+		await apiClient.post(`/sessions/service-account/${id}`);
+	}
+
+	static async generateConversationMessageKey() {
+		try {
+			const data = await apiClient.post<{ key: string }>(`/conversation-message-key`);
+			return data.key as string;
+		} catch (err) {
+			return '';
+		}
+	}
+
+	static async updateProfileDetails(details: { name: string; email: string; phone: string }) {
+		await apiClient.post(`/sessions/details`, details);
+	}
+}
