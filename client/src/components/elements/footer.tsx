@@ -52,7 +52,7 @@ export default function Footer() {
 					</div>
 					<div className='w-full md:w-1/5 flex flex-col items-center md:items-start text-center md:text-left gap-0'>
 						<Button variant={'secondary'} className='px-8'>
-							My Appointments
+							Book A Consultation
 						</Button>
 					</div>
 				</div>
