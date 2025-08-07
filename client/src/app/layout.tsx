@@ -30,7 +30,7 @@ export default async function RootLayout({
 			<body className={cn('h-screen w-screen overflow-x-hidden', poppins.className)}>
 				<ThemeProvider
 					attribute='class'
-					defaultTheme='system'
+					defaultTheme='light'
 					enableSystem
 					disableTransitionOnChange
 				>

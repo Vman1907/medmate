@@ -1,26 +1,18 @@
 'use client';
-import { Paths, SLEEK_LOGO } from '@/lib/consts';
-import { MenuIcon } from 'lucide-react';
+import { Paths, SLEEK_LOGO, SLEEK_LOGO_WHITE } from '@/lib/consts';
+import { MenuIcon, X } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-	Menubar,
-	MenubarContent,
-	MenubarLink,
-	MenubarMenu,
-	MenubarSeparator,
-	MenubarSub,
-	MenubarSubContent,
-	MenubarSubTrigger,
-	MenubarTrigger,
-} from '../ui/menubar';
+import { useState } from 'react';
+import { Button } from '../ui/button';
+import { Menubar, MenubarMenu, MenubarTrigger } from '../ui/menubar';
 import { ThemeToggle } from '../ui/theme-toggle';
 import AuthDialog from './dialogs/auth';
 
 export default function Navbar() {
-	function getLink(link: string) {
-		return `/panel${link}`;
-	}
+	const [isOpen, setIsOpen] = useState(false);
+	const { theme } = useTheme();
 
 	return (
 		<Menubar className='  px-[2%] py-4 w-full'>
@@ -31,8 +23,8 @@ export default function Navbar() {
 							<MenubarTrigger>
 								<Link href={Paths.HOME.LANDING}>
 									<Image
-										src={SLEEK_LOGO}
-										alt='Medmate'
+										src={theme === 'dark' ? SLEEK_LOGO_WHITE : SLEEK_LOGO}
+										alt={`Medmate-${theme}-logo`}
 										width={120}
 										height={100}
 										className='text-white'
@@ -65,7 +57,7 @@ export default function Navbar() {
 						</MenubarMenu>
 						<MenubarMenu>
 							<AuthDialog>
-								<MenubarTrigger className='bg-primary rounded-full px-6 py-2 text-slate-50 dark:text-slate-800 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'>
+								<MenubarTrigger className='bg-primary rounded-full px-6 py-2 text-slate-50 hover:text-slate-100 focus:text-slate-100 dark:text-slate-800 focus:dark:text-slate-900 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'>
 									Login
 								</MenubarTrigger>
 							</AuthDialog>
@@ -75,57 +67,29 @@ export default function Navbar() {
 				</div>
 			</div>
 			<div className='md:hidden'>
-				<MenubarMenu>
-					<MenubarTrigger>
-						<MenuIcon className='w-6 h-6' />
-					</MenubarTrigger>
-					<MenubarContent>
-						<MenubarSub>
-							<MenubarSubTrigger>Dashboard</MenubarSubTrigger>
-							<MenubarSubContent>
-								<MenubarLink href={getLink('/home/dashboard')}>Dashboard</MenubarLink>
-								<MenubarSeparator />
-								<MenubarLink href={getLink('/home/tasks')}>Tasks</MenubarLink>
-								<MenubarSeparator />
-								<MenubarLink href={getLink('/home/agents')}>Agents</MenubarLink>
-							</MenubarSubContent>
-						</MenubarSub>
-						<MenubarSub>
-							<MenubarSubTrigger>Audience & Media</MenubarSubTrigger>
-							<MenubarSubContent>
-								<MenubarLink href={getLink('/audience/phonebook')}>Phonebook</MenubarLink>
-								<MenubarSeparator />
-								<MenubarLink href={getLink('/audience/media')}>Media</MenubarLink>
-								<MenubarLink href={getLink('/audience/contacts')}>VCards</MenubarLink>
-								<MenubarSeparator />
-								<MenubarLink href={getLink('/audience/message-link')}>Message Links</MenubarLink>
-							</MenubarSubContent>
-						</MenubarSub>
-						<MenubarSub>
-							<MenubarSubTrigger>Campaigns</MenubarSubTrigger>
-							<MenubarSubContent>
-								<MenubarLink href={getLink('/campaigns/templates')}>Templates</MenubarLink>
-								<MenubarSeparator />
-								<MenubarLink href={getLink('/campaigns/broadcast')}>Campaign</MenubarLink>
-								<MenubarLink href={getLink('/campaigns/recurring')}>Recurring Campaign</MenubarLink>
-								<MenubarLink href={getLink('/campaigns/report')}>Campaign Report</MenubarLink>
-								<MenubarSeparator />
-								<MenubarLink href={getLink('/campaigns/chatbot-flow')}>Chatbot Flow</MenubarLink>
-								<MenubarLink href={getLink('/campaigns/whatsapp-flow')}>Whatsapp Forms</MenubarLink>
-							</MenubarSubContent>
-						</MenubarSub>
-						<MenubarLink href={getLink('/conversations')}>Chats</MenubarLink>
-						<MenubarSub>
-							<MenubarSubTrigger>Ads</MenubarSubTrigger>
-							<MenubarSubContent>
-								<MenubarLink href={getLink('/ads/setup')}>Setup</MenubarLink>
-								<MenubarLink href={getLink('/ads/create')}>Create Ad</MenubarLink>
-								<MenubarLink href={getLink('/ads/ads-manager')}>Ads Manager</MenubarLink>
-								<MenubarLink href={getLink('/ads/custom-audience')}>Custom Audience</MenubarLink>
-							</MenubarSubContent>
-						</MenubarSub>
-					</MenubarContent>
-				</MenubarMenu>
+				<Button
+					variant='ghost'
+					className='bg-tr rounded-full p-2'
+					onClick={() => setIsOpen(!isOpen)}
+				>
+					<MenuIcon className='w-6 h-6' />
+				</Button>
+				{isOpen && (
+					<div className='absolute top-0 left-0 bg-white dark:bg-slate-900 z-10 flex flex-col gap-4 p-4 min-w-[100vw] min-h-[100vh] justify-center items-center underline underline-offset-8'>
+						<Link href={Paths.HOME.HOME_VISIT}>Home Visit</Link>
+						<Link href={Paths.HOME.CONSULTATION}>Consultation</Link>
+						<Link href={Paths.HOME.SERVICES}>Services</Link>
+						<Link href={Paths.HOME.CONTACT_US}>Contact Us</Link>
+
+						<Button
+							variant='ghost'
+							className='mt-12 bg-accent rounded-full p-2'
+							onClick={() => setIsOpen(false)}
+						>
+							<X className='w-6 h-6' />
+						</Button>
+					</div>
+				)}
 			</div>
 		</Menubar>
 	);
