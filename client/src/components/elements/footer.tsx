@@ -1,4 +1,3 @@
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 
@@ -6,7 +5,7 @@ export default function Footer() {
 	return (
 		<footer className='bg-primary text-accent px-[5%]'>
 			<div className='pt-16 pb-4 px-4%'>
-				<div className='w-full flex flex-col md:flex-row text-center md:text-left gap-12 md:gap-8'>
+				<div className='w-full flex flex-col md:flex-row text-center md:text-left gap-12 md:gap-8 py-[5rem]'>
 					<div className='w-full md:w-1/5 flex flex-col text-center items-center md:items-start md:text-left'>
 						<p className='underline underline-offset-8 font-medium'>Menu</p>
 						<div className='mt-4'>
