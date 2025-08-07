@@ -56,7 +56,7 @@ export default async function Home() {
 								</div>
 							</div>
 						</div>
-						<div className='relative'>
+						<div className='relative hidden md:block'>
 							<Image src={HERO_IMAGE} width={390} height={540} alt='' />
 							<div className='absolute -z-10 right-0 bottom-0 h-[70%] w-[50%] bg-primary rounded-xl'></div>
 						</div>
