@@ -1,7 +1,6 @@
 'use client';
 import { Paths } from '@/lib/consts';
 import { MenuIcon, X } from 'lucide-react';
-import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Button } from '../ui/button';
@@ -12,7 +11,6 @@ import Logo from './logo';
 
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false);
-	const { theme } = useTheme();
 
 	return (
 		<Menubar className='  px-[2%] py-4 w-full'>
