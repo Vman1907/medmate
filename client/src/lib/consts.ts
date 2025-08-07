@@ -4,7 +4,19 @@ export const NOT_FOUND = '/images/not-found.svg';
 export const SERVER_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const Paths = {
-	Dashboard: '/home/dashboard',
+	HOME: {
+		LANDING: '/',
+		HOME_VISIT: '/home-visit',
+		CONSULTATION: '/consultation',
+		SERVICES: '/services',
+		CONTACT_US: '/contact-us',
+	},
+	AUTH: {
+		LOGIN: '/auth/login',
+		REGISTER: '/auth/register',
+		FORGOT_PASSWORD: '/auth/forgot-password',
+		RESET_PASSWORD: '/auth/reset-password',
+	},
 };
 
 export const COLORS = {
