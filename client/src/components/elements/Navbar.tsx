@@ -14,6 +14,7 @@ import {
 	MenubarSubTrigger,
 	MenubarTrigger,
 } from '../ui/menubar';
+import { ThemeToggle } from '../ui/theme-toggle';
 
 export default function Navbar() {
 	const userDetails = useUserDetails();
@@ -60,6 +61,7 @@ export default function Navbar() {
 								<Link href={Paths.HOME.CONTACT_US}>Contact Us</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
+						<ThemeToggle hideText />
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,6 @@
 import PageLayout from '@/components/containers/page-layout';
 import Loading from '@/components/elements/loading';
+import { ThemeProvider } from '@/components/ui/theme-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
@@ -27,12 +28,19 @@ export default async function RootLayout({
 			<link rel='icon' type='image/png' sizes='32x32' href='/icons/favicon-32x32.png' />
 			<link rel='icon' type='image/png' sizes='16x16' href='/icons/favicon-16x16.png' />
 			<body className={cn('h-screen w-screen overflow-x-hidden', poppins.className)}>
-				<PageLayout>
-					<TooltipProvider>
-						<Suspense fallback={<Loading />}>{children}</Suspense>
-					</TooltipProvider>
-				</PageLayout>
-				<Toaster position='top-center' />
+				<ThemeProvider
+					attribute='class'
+					defaultTheme='system'
+					enableSystem
+					disableTransitionOnChange
+				>
+					<PageLayout>
+						<TooltipProvider>
+							<Suspense fallback={<Loading />}>{children}</Suspense>
+						</TooltipProvider>
+					</PageLayout>
+					<Toaster position='top-center' />
+				</ThemeProvider>
 			</body>
 		</html>
 	);
