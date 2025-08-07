@@ -20,7 +20,7 @@ interface UserDetailsResponse {
 export default class AuthService {
 	static async isAuthenticated() {
 		try {
-			const data = await apiClient.getWithoutCache<AuthResponse>('/sessions/validate-auth');
+			await apiClient.getWithoutCache<AuthResponse>('/sessions/validate-auth');
 			return {
 				authenticated: true,
 			};
@@ -33,7 +33,7 @@ export default class AuthService {
 
 	static async login(email: string, password: string) {
 		try {
-			const data = await apiClient.post<AuthResponse>('/sessions/login', {
+			await apiClient.post<AuthResponse>('/sessions/login', {
 				email,
 				password,
 			});
@@ -58,7 +58,7 @@ export default class AuthService {
 
 	static async register(details: z.infer<typeof signupSchema>) {
 		try {
-			const data = await apiClient.post<AuthResponse>('/sessions/register', {
+			await apiClient.post<AuthResponse>('/sessions/register', {
 				name: `${details.firstName} ${details.lastName}`.trim(),
 				phone: details.phone,
 				email: details.email,

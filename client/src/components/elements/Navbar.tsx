@@ -2,7 +2,6 @@
 import { Paths } from '@/lib/consts';
 import { MenuIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useUserDetails } from '../context/user-details';
 import {
 	Menubar,
 	MenubarContent,
@@ -17,8 +16,6 @@ import {
 import { ThemeToggle } from '../ui/theme-toggle';
 
 export default function Navbar() {
-	const userDetails = useUserDetails();
-
 	function getLink(link: string) {
 		return `/panel${link}`;
 	}
