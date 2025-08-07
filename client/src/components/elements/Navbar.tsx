@@ -14,6 +14,7 @@ import {
 	MenubarTrigger,
 } from '../ui/menubar';
 import { ThemeToggle } from '../ui/theme-toggle';
+import AuthDialog from './dialogs/auth';
 
 export default function Navbar() {
 	function getLink(link: string) {
@@ -50,13 +51,13 @@ export default function Navbar() {
 						</MenubarMenu>
 						<MenubarMenu>
 							<MenubarTrigger>
-								<Link href={Paths.AUTH.LOGIN}>Login</Link>
+								<Link href={Paths.HOME.CONTACT_US}>Contact Us</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
 						<MenubarMenu>
-							<MenubarTrigger className=' px-4 py-2 rounded-full bg-primary text-primary-foreground hover:text-white dark:bg-primary-foreground dark:text-primary'>
-								<Link href={Paths.HOME.CONTACT_US}>Contact Us</Link>
-							</MenubarTrigger>
+							<AuthDialog>
+								<MenubarTrigger>Login</MenubarTrigger>
+							</AuthDialog>
 						</MenubarMenu>
 						<ThemeToggle hideText />
 					</div>
