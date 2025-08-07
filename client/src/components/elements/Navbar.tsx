@@ -24,7 +24,7 @@ export default function Navbar() {
 	}
 
 	return (
-		<Menubar className='  px-[2%] py-4 border-t-0 border-x-0 border-b w-full'>
+		<Menubar className='  px-[2%] py-4 w-full'>
 			<div className='md:flex hidden w-full'>
 				<div className='flex gap-4 justify-between items-center w-full'>
 					<div className='flex-1'>
@@ -57,7 +57,7 @@ export default function Navbar() {
 							</MenubarTrigger>
 						</MenubarMenu>
 						<MenubarMenu>
-							<MenubarTrigger className=' px-4 py-2 rounded-full'>
+							<MenubarTrigger className=' px-4 py-2 rounded-full bg-primary text-primary-foreground hover:text-white dark:bg-primary-foreground dark:text-primary'>
 								<Link href={Paths.HOME.CONTACT_US}>Contact Us</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
