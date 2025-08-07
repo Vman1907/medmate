@@ -1,6 +1,7 @@
 'use client';
-import { Paths } from '@/lib/consts';
+import { Paths, SLEEK_LOGO } from '@/lib/consts';
 import { MenuIcon } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import {
 	Menubar,
@@ -28,7 +29,15 @@ export default function Navbar() {
 					<div className='flex-1'>
 						<MenubarMenu>
 							<MenubarTrigger>
-								<Link href={Paths.HOME.LANDING}>Home</Link>
+								<Link href={Paths.HOME.LANDING}>
+									<Image
+										src={SLEEK_LOGO}
+										alt='Medmate'
+										width={120}
+										height={100}
+										className='text-white'
+									/>
+								</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
 					</div>
@@ -56,7 +65,9 @@ export default function Navbar() {
 						</MenubarMenu>
 						<MenubarMenu>
 							<AuthDialog>
-								<MenubarTrigger>Login</MenubarTrigger>
+								<MenubarTrigger className='bg-primary rounded-full px-6 py-2 text-slate-50 dark:text-slate-50 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'>
+									Login
+								</MenubarTrigger>
 							</AuthDialog>
 						</MenubarMenu>
 						<ThemeToggle hideText />

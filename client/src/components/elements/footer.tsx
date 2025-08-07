@@ -19,28 +19,45 @@ export default function Footer() {
 						/>
 					</div>
 					<div className='w-full md:w-1/5 flex flex-col items-center md:items-start text-center md:text-left gap-0'>
-						<p className='underline underline-offset-8 font-medium'>Explore</p>
+						<p className='underline underline-offset-8 font-medium  text-slate-50 dark:text-slate-50'>
+							Explore
+						</p>
 						<div className='mt-4'>
-							<Link className='hover:text-slate-200' href='/terms'>
+							<Link
+								className='hover:text-slate-200 text-slate-50 dark:hover:text-slate-200 dark:text-slate-50 '
+								href='/terms'
+							>
 								<p>Home Visit</p>
 							</Link>
-							<Link className='hover:text-slate-200' href='/privacy'>
+							<Link
+								className='hover:text-slate-200 text-slate-50 dark:hover:text-slate-200 dark:text-slate-50 '
+								href='/privacy'
+							>
 								<p>Consultation</p>
 							</Link>
-							<Link className='hover:text-slate-200' href='/privacy'>
+							<Link
+								className='hover:text-slate-200 text-slate-50 dark:hover:text-slate-200 dark:text-slate-50 '
+								href='/privacy'
+							>
 								<p>Services</p>
 							</Link>
-							<Link className='hover:text-slate-200' href='/disclaimer'>
+							<Link
+								className='hover:text-slate-200 text-slate-50 dark:hover:text-slate-200 dark:text-slate-50 '
+								href='/disclaimer'
+							>
 								<p>Contact Us</p>
 							</Link>
 						</div>
 					</div>
 					<div className='w-full md:w-2/5 flex flex-col items-center md:items-start text-center md:text-left'>
-						<Button variant={'secondary'} className='pr-8 pl-10 relative group '>
+						<Button
+							variant={'secondary'}
+							className='pr-8 pl-10 relative group dark:bg-slate-100 dark:hover:bg-slate-100 dark:text-slate-900 dark:hover:text-slate-900 '
+						>
 							Book A Consultation
 							<Phone className='w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 group-hover:translate-x-1 transition-all duration-300' />
 						</Button>
-						<div className='mt-4'>
+						<div className='mt-4 text-slate-50 dark:text-slate-50'>
 							<p>Stellar Coaching & Consulting</p>
 							<p>B-502, Sahara Apartment, Plot No. 11,</p>
 							<p>Sector 6 Dwarka, Dwarka,</p>
