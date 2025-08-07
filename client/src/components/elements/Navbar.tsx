@@ -65,7 +65,7 @@ export default function Navbar() {
 						</MenubarMenu>
 						<MenubarMenu>
 							<AuthDialog>
-								<MenubarTrigger className='bg-primary rounded-full px-6 py-2 text-slate-50 dark:text-slate-50 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'>
+								<MenubarTrigger className='bg-primary rounded-full px-6 py-2 text-slate-50 dark:text-slate-800 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'>
 									Login
 								</MenubarTrigger>
 							</AuthDialog>
