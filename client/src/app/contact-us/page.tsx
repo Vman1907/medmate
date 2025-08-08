@@ -10,13 +10,51 @@ import { toast } from 'react-hot-toast';
 export default function ContactUs() {
 	const router = useRouter();
 	const [data, setData] = useState<Record<string, string>>({});
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log('Form submitted', data);
-		// await sendEmail(data);
-		toast.success('Message sent successfully');
-		router.push('/');
+
+		// Validate required fields
+		if (!data.firstname || !data.lastname || !data.email || !data.subject || !data.message) {
+			toast.error('Please fill in all fields');
+			return;
+		}
+
+		// Validate email format
+		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+		if (!emailRegex.test(data.email)) {
+			toast.error('Please provide a valid email address');
+			return;
+		}
+
+		setIsSubmitting(true);
+
+		try {
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			});
+
+			const result = await response.json();
+
+			if (response.ok) {
+				toast.success('Message sent successfully!');
+				// Reset form
+				setData({});
+				router.push('/');
+			} else {
+				toast.error(result.error || 'Failed to send message');
+			}
+		} catch (error) {
+			console.error('Contact form error:', error);
+			toast.error('Failed to send message. Please try again.');
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
 
 	return (
@@ -35,57 +73,68 @@ export default function ContactUs() {
 					<div className='mx-auto flex max-w-3xl flex-col gap-6 rounded-lg border p-4 md:p-10 w-full'>
 						<div className='flex flex-col md:flex-row gap-4'>
 							<div className='grid w-full items-center gap-1.5'>
-								<Label htmlFor='firstname'>First Name</Label>
+								<Label htmlFor='firstname'>First Name *</Label>
 								<Input
 									type='text'
 									id='firstname'
 									placeholder='First Name'
-									value={data.firstname}
+									value={data.firstname || ''}
 									onChange={(e) => setData({ ...data, firstname: e.target.value })}
+									required
+									disabled={isSubmitting}
 								/>
 							</div>
 							<div className='grid w-full items-center gap-1.5'>
-								<Label htmlFor='lastname'>Last Name</Label>
+								<Label htmlFor='lastname'>Last Name *</Label>
 								<Input
 									type='text'
 									id='lastname'
 									placeholder='Last Name'
-									value={data.lastname}
+									value={data.lastname || ''}
 									onChange={(e) => setData({ ...data, lastname: e.target.value })}
+									required
+									disabled={isSubmitting}
 								/>
 							</div>
 						</div>
 						<div className='grid w-full items-center gap-1.5'>
-							<Label htmlFor='email'>Email</Label>
+							<Label htmlFor='email'>Email *</Label>
 							<Input
 								type='email'
 								id='email'
 								placeholder='Email'
-								value={data.email}
+								value={data.email || ''}
 								onChange={(e) => setData({ ...data, email: e.target.value })}
+								required
+								disabled={isSubmitting}
 							/>
 						</div>
 						<div className='grid w-full items-center gap-1.5'>
-							<Label htmlFor='subject'>Subject</Label>
+							<Label htmlFor='subject'>Subject *</Label>
 							<Input
 								type='text'
 								id='subject'
 								placeholder='Subject'
-								value={data.subject}
+								value={data.subject || ''}
 								onChange={(e) => setData({ ...data, subject: e.target.value })}
+								required
+								disabled={isSubmitting}
 							/>
 						</div>
 						<div className='grid w-full gap-1.5'>
-							<Label htmlFor='message'>Message</Label>
+							<Label htmlFor='message'>Message *</Label>
 							<Textarea
 								placeholder='Type your message here.'
 								id='message'
-								value={data.message}
+								value={data.message || ''}
 								onChange={(e) => setData({ ...data, message: e.target.value })}
+								required
+								disabled={isSubmitting}
+								rows={6}
 							/>
 						</div>
-						<Button className='w-full' type='submit'>
-							Send Message
+						<Button className='w-full' type='submit' disabled={isSubmitting}>
+							{isSubmitting ? 'Sending Message...' : 'Send Message'}
 						</Button>
 					</div>
 				</div>
