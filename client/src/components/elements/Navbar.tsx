@@ -3,6 +3,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { Paths } from '@/lib/consts';
 import { LogOut, MenuIcon, User, X } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
@@ -22,12 +23,14 @@ import Logo from './logo';
 export default function Navbar() {
 	const { user, loading, logout } = useAuth();
 	const [isOpen, setIsOpen] = useState(false);
+	const router = useRouter();
 
 	const handleLogout = async () => {
 		setIsOpen(false);
 		try {
 			await logout();
 			toast.success('Logged out successfully');
+			router.push('/');
 		} catch (error) {
 			toast.error('Failed to logout');
 		}
@@ -47,6 +50,14 @@ export default function Navbar() {
 						</MenubarMenu>
 					</div>
 					<div className='flex gap-4'>
+						{user && (
+							<MenubarMenu>
+								<MenubarTrigger>
+									<Link href={Paths.DASHBOARD}>Dashboard</Link>
+								</MenubarTrigger>
+							</MenubarMenu>
+						)}
+
 						<MenubarMenu>
 							<MenubarTrigger>
 								<Link href={Paths.HOME_VISIT}>Home Visit</Link>
@@ -86,7 +97,7 @@ export default function Navbar() {
 										</MenubarItem>
 									</Link>
 									<MenubarSeparator />
-									<MenubarItem>
+									<MenubarItem onClick={handleLogout}>
 										<LogOut className='h-4 w-4 mr-2' />
 										Logout
 									</MenubarItem>
@@ -122,6 +133,11 @@ export default function Navbar() {
 						>
 							<Logo />
 						</Link>
+						{user && (
+							<Link href={Paths.DASHBOARD} onClick={() => setIsOpen(false)}>
+								Dashboard
+							</Link>
+						)}
 						<Link href={Paths.HOME_VISIT} onClick={() => setIsOpen(false)}>
 							Home Visit
 						</Link>

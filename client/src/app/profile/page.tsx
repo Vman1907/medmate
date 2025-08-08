@@ -92,7 +92,7 @@ export default function ProfilePage() {
 										placeholder='Enter name'
 									/>
 								) : (
-									user.name
+									user.name || 'Hello'
 								)}
 							</CardTitle>
 							{!isEditing && (
@@ -121,7 +121,7 @@ export default function ProfilePage() {
 										<Input
 											value={editedPhone}
 											onChange={(e) => setEditedPhone(e.target.value)}
-											className='text-lg border-none shadow-none focus:ring-0 p-0'
+											className='text-lg border-none shadow-none focus:ring-0 px-4'
 											placeholder='Enter phone number'
 										/>
 									) : (
