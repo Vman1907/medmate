@@ -164,11 +164,6 @@ export default function Navbar() {
 						>
 							<Logo />
 						</Link>
-						{user && (
-							<Link href={Paths.DASHBOARD} onClick={() => setIsOpen(false)}>
-								Dashboard
-							</Link>
-						)}
 						<Link href={Paths.HOME_VISIT} onClick={() => setIsOpen(false)}>
 							Home Visit
 						</Link>
