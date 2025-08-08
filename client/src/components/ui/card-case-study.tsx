@@ -17,16 +17,22 @@ const ContentCard: React.FC<CaseStudyCardProps> = ({ title, category, image, log
 		<div
 			className='relative flex h-full flex-col items-start justify-between rounded-lg bg-accent group w-full overflow-hidden'
 			style={{
-				backgroundImage: `url(/images/doctor_on_call.png)`, // Default image
+				backgroundImage: `url(${image})`, // Default image
 				backgroundSize: 'cover',
 				backgroundPosition: 'center',
 			}}
 		>
-			{image && <div className='opacity-0 group-hover:opacity-60 rounded-lg absolute inset-0  bg-black' />}
+			{image && (
+				<div className='opacity-0 group-hover:opacity-60 rounded-lg absolute inset-0  bg-black' />
+			)}
 
 			{logo && logo}
 			<div className='relative z-10 flex flex-col justify-end h-full w-full'>
-				{category && <div className='text-lg font-medium text-white dark:text-white from-transparent to-black bg-gradient-to-b p-4 block group-hover:hidden w-full'>{category}</div>}
+				{category && (
+					<div className='text-lg font-medium text-white dark:text-white from-transparent to-black bg-gradient-to-b p-4 block group-hover:hidden w-full'>
+						{category}
+					</div>
+				)}
 
 				{title && (
 					<div className='p-4 overflow-hidden hidden group-hover:block mr-2 text-sm font-bold leading-tight tracking-wide text-red-400 transition-all duration-300 ease-in-out'>

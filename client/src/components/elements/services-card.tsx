@@ -9,49 +9,49 @@ const services = [
 	{
 		title: 'Doctor on Call',
 		description: 'Consult with expert doctors 24/7',
-		// header: <Skeleton />, // Uncomment if you want to use a skeleton
+		images: '/images/doctor_on_call.png',
 		icon: <HomeIcon className='h-4 w-4 text-neutral-500' />,
 	},
 	{
 		title: 'Home Nursing Care',
 		description: 'Convenient doorstep delivery of essentials.',
-		// header: <Skeleton />,
+		images: '/images/nursing_feature.png',
 		icon: <Stethoscope className='h-4 w-4 text-neutral-500' />,
 	},
 	{
 		title: 'Lab Tests at Home',
 		description: 'Hassle free sample collection and tests.',
-		// header: <Skeleton />,
+		images: '/images/lab_at_home_feature.png',
 		icon: <Microscope className='h-4 w-4 text-neutral-500' />,
 	},
 	{
 		title: 'Emergency Ambulance',
 		description: 'Quick and reliable medical transport.',
-		// header: <Skeleton />,
+		images: '/images/ambulance_feature.png',
 		icon: <IconTableColumn className='h-4 w-4 text-neutral-500' />,
 	},
 	{
 		title: 'Medical delivery',
 		description: 'Convenient doorstep delivery of essentials.',
-		// header: <Skeleton />,
+		images: '/images/medical_delivery_feature.png',
 		icon: <IconMedicineSyrup className='h-4 w-4 text-neutral-500' />,
 	},
 	{
 		title: 'Secure Health Records',
 		description: 'Access your health records anytime, anywhere.',
-		// header: <Skeleton />,
+		images: '/images/secure_records_feature.png',
 		icon: <Database className='h-4 w-4 text-neutral-500' />,
 	},
 	{
 		title: 'Specialist Finder',
 		description: 'Find the right specialist for your needs.',
-		// header: <Skeleton />,
+		images: '/images/finder_feature.png',
 		icon: <Search className='h-4 w-4 text-neutral-500' />,
 	},
 	{
 		title: '24/7 Support',
 		description: 'Get assistance whenever you need it.',
-		// header: <Skeleton />,
+		images: '/images/support_feature.png',
 		icon: <Headset className='h-4 w-4 text-neutral-500' />,
 	},
 ];
@@ -65,7 +65,7 @@ export default function ServicesCard() {
 					<CaseStudyCard
 						title={service.description}
 						category={service.title}
-						image='https://images.unsplash.com/photo-1675285410608-ddd6bb430b19?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+						image={service.images}
 						type='content'
 					/>
 				)}
