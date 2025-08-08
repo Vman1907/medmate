@@ -2,7 +2,7 @@ import Each from '@/components/containers/each';
 import { HighlightSection } from '@/components/elements/HighlightSection';
 import { Button } from '@/components/ui/button';
 import {
-	DOCTOR_ON_CALL_IMAGE,
+	SERVICE_1_IMAGE,
 	SERVICE_2_IMAGE,
 	SERVICE_3_IMAGE,
 	SERVICE_4_IMAGE,
@@ -21,7 +21,7 @@ const services: { title: string; description: string; items: string[]; image: st
 			'Doctor visits you quickly when you need help',
 			'Prescription and advice right from your home',
 		],
-		image: DOCTOR_ON_CALL_IMAGE,
+		image: SERVICE_1_IMAGE,
 	},
 	{
 		title: 'Nursing Care at Home',

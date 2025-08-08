@@ -21,7 +21,7 @@ export default function ServiceContainer({
 	return (
 		<div
 			className={cn(
-				'gap-4 flex justify-between flex-col-reverse md:flex-row shadow-lg rounded-lg p-6 bg-white dark:bg-gray-800 items-center',
+				'gap-4 md:gap-12 flex justify-between flex-col-reverse md:flex-row shadow-lg rounded-lg p-6 bg-white dark:bg-gray-800 items-center',
 				className
 			)}
 		>
@@ -39,7 +39,8 @@ export default function ServiceContainer({
 						)}
 					/>
 				</div>
-				<Button className='w-min'>Book Now</Button>
+				<Button className='w-min'>Book Now</Button> 
+				{/* //TODO:Redirect to home visit booking page */}
 			</div>
 			<div>
 				<Image
