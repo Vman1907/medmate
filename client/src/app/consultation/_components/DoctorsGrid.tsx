@@ -7,11 +7,11 @@ export default function DoctorsGrid({ doctors }: { doctors: DoctorType[] }) {
 	return (
 		<div>
 			<h3 className='text-2xl font-bold text-primary'>Our Renowned Doctors</h3>
-			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
+			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4'>
 				<Each
 					items={doctors}
 					render={(doctor) => (
-						<div className='h-[25rem] w-full flex items-center justify-center '>
+						<div className='h-[18rem] md:h-[25rem] w-full flex items-center justify-center '>
 							<PinContainer title={doctor.name} href={`/doctor/${doctor.id}`}>
 								<div className='flex basis-full flex-col p-0 tracking-tight text-slate-100/50 sm:basis-1/2 w-[15rem] h-[15rem] '>
 									<div className='relative flex flex-1 w-full rounded-2xl bg-gradient-to-br from-violet-500 via-purple-500 to-blue-500'>

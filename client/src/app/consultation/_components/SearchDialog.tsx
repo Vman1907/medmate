@@ -111,7 +111,7 @@ function FilteredCommandList(props: {
 			...(props.locations.length > 0
 				? [
 						{
-							heading: 'Locations',
+							heading: 'Location',
 							items: props.locations
 								.map((location) => ({
 									label: location.name,
@@ -124,7 +124,7 @@ function FilteredCommandList(props: {
 			...(props.hospitals.length > 0
 				? [
 						{
-							heading: 'Hospitals',
+							heading: 'Hospital',
 							items: props.hospitals
 								.map((hospital) => ({
 									label: hospital.name,
@@ -137,7 +137,7 @@ function FilteredCommandList(props: {
 			...(props.departments.length > 0
 				? [
 						{
-							heading: 'Departments',
+							heading: 'Department',
 							items: props.departments
 								.map((department) => ({
 									label: department.name,

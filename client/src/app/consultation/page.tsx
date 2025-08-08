@@ -1,3 +1,4 @@
+import { slugify } from '@/lib/utils';
 import { DoctorType } from '@/types/doctor';
 import { DOCTORS_MOCKED_DATA } from '../../mock/mockedData';
 import DoctorsGrid from './_components/DoctorsGrid';
@@ -5,21 +6,43 @@ import { DoctorsList } from './_components/DoctorsList';
 import ConsultationFilters from './_components/filters';
 import { ConsultationHeading } from './_components/heading';
 
-const getDoctors = async () => {
-	return DOCTORS_MOCKED_DATA as DoctorType[];
+const getDoctors = async (searchParams: {
+	location?: string;
+	hospital?: string;
+	department?: string;
+	gender?: string;
+	experience?: string;
+}) => {
+	const filteredDoctors = DOCTORS_MOCKED_DATA.filter((doctor) => {
+		if (searchParams.location && slugify(doctor.region) !== slugify(searchParams.location))
+			return false;
+		if (searchParams.hospital && slugify(doctor.hospital) !== slugify(searchParams.hospital))
+			return false;
+		if (searchParams.department && slugify(doctor.department) !== slugify(searchParams.department))
+			return false;
+		if (searchParams.gender && slugify(doctor.gender) !== slugify(searchParams.gender))
+			return false;
+		if (searchParams.experience && slugify(doctor.experience) !== slugify(searchParams.experience))
+			return false;
+		return true;
+	});
+	return filteredDoctors as DoctorType[];
 };
 
 export default async function Consultation({
 	searchParams,
 }: {
 	searchParams: {
-		filter_type?: string;
-		filter_value?: string;
+		location?: string;
+		hospital?: string;
+		department?: string;
+		gender?: string;
+		experience?: string;
 	};
 }) {
-	const { filter_type, filter_value } = searchParams;
+	const isFiltered = Object.values(searchParams).some((value) => value !== undefined);
 
-	const doctors = await getDoctors();
+	const doctors = await getDoctors(searchParams);
 
 	return (
 		<div className='relative pt-[5%] px-[5%] md:px-[7%]'>
@@ -38,12 +61,11 @@ export default async function Consultation({
 				</div>
 				<div>
 					<div>
-						{!filter_type && !filter_value && (
+						{!isFiltered ? (
 							<div className='mt-6 relative'>
 								<DoctorsGrid doctors={doctors.slice(0, 4)} />
 							</div>
-						)}
-						{filter_type && filter_value && (
+						) : (
 							<div className='mt-6 relative'>
 								<DoctorsList doctors={doctors} />
 							</div>

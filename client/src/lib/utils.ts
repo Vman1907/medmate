@@ -151,3 +151,7 @@ export function downloadBlob(blob: Blob, filename: string = 'download', mimeType
 	a.click();
 	window.URL.revokeObjectURL(url);
 }
+
+export function slugify(text: string) {
+	return text.toLowerCase().replace(/ /g, '-');
+}

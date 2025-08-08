@@ -1,5 +1,5 @@
 export type FilterSelectedEvent = {
-	type: 'doctor' | 'location' | 'hospital' | 'department';
+	type: 'doctor' | 'location' | 'hospital' | 'department' | 'gender' | 'experience';
 	value: string;
 };
 
