@@ -5,6 +5,7 @@ import Footer from '@/components/elements/footer';
 import Loading from '@/components/elements/loading';
 import { ThemeProvider } from '@/components/ui/theme-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { AuthProvider } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
@@ -37,17 +38,19 @@ export default async function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					<PrefetchRoutes />
-					<PageLayout>
-						<TooltipProvider>
-							<Navbar />
-							{/* <DotBackgroundDemo> */}
-							<Suspense fallback={<Loading />}>{children}</Suspense>
-							{/* </DotBackgroundDemo> */}
-							<Footer />
-						</TooltipProvider>
-					</PageLayout>
-					<Toaster position='top-center' />
+					<AuthProvider>
+						<PrefetchRoutes />
+						<PageLayout>
+							<TooltipProvider>
+								<Navbar />
+								{/* <DotBackgroundDemo> */}
+								<Suspense fallback={<Loading />}>{children}</Suspense>
+								{/* </DotBackgroundDemo> */}
+								<Footer />
+							</TooltipProvider>
+						</PageLayout>
+						<Toaster position='top-center' />
+					</AuthProvider>
 				</ThemeProvider>
 			</body>
 		</html>

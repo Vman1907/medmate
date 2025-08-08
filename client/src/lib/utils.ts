@@ -77,14 +77,6 @@ export const isDateBetween = (
 	return target >= start && target <= end;
 };
 
-export const formatPhoneNumber = (phoneNumber: string) => {
-	//mark first 4 digit last 2 digits visible others should be X
-	const visibleFirst = phoneNumber.substring(0, 4);
-	const visibleLast = phoneNumber.substring(phoneNumber.length - 4);
-	const hidden = phoneNumber.substring(4, phoneNumber.length - 4).replace(/\d/g, 'X');
-	return `${visibleFirst}${hidden}${visibleLast}`;
-};
-
 export const mobileCheck = function () {
 	let check = false;
 	(function (a) {
@@ -154,4 +146,13 @@ export function downloadBlob(blob: Blob, filename: string = 'download', mimeType
 
 export function slugify(text: string) {
 	return text.toLowerCase().replace(/ /g, '-');
+}
+
+export function formatPhoneNumber(phoneNumber: string) {
+	if (!phoneNumber || phoneNumber.length < 10) return phoneNumber;
+	const countryCode = phoneNumber.substring(0, 3);
+	const firstPart = phoneNumber.substring(3, 6);
+	const secondPart = phoneNumber.substring(6, 9);
+	const thirdPart = phoneNumber.substring(9);
+	return `(${countryCode}) ${firstPart} ${secondPart} ${thirdPart}`;
 }

@@ -1,16 +1,37 @@
 'use client';
+import { useAuth } from '@/hooks/useAuth';
 import { Paths } from '@/lib/consts';
-import { MenuIcon, X } from 'lucide-react';
+import { LogOut, MenuIcon, User, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Button } from '../ui/button';
-import { Menubar, MenubarMenu, MenubarTrigger } from '../ui/menubar';
+import {
+	Menubar,
+	MenubarContent,
+	MenubarItem,
+	MenubarMenu,
+	MenubarSeparator,
+	MenubarTrigger,
+} from '../ui/menubar';
 import { ThemeToggle } from '../ui/theme-toggle';
 import AuthDialog from './dialogs/auth';
 import Logo from './logo';
 
 export default function Navbar() {
+	const { user, loading, logout } = useAuth();
 	const [isOpen, setIsOpen] = useState(false);
+
+	const handleLogout = async () => {
+		setIsOpen(false);
+		try {
+			await logout();
+			toast.success('Logged out successfully');
+		} catch (error) {
+			toast.error('Failed to logout');
+		}
+	};
 
 	return (
 		<Menubar className='  px-[2%] py-4 w-full'>
@@ -47,13 +68,39 @@ export default function Navbar() {
 								<Link href={Paths.CONTACT_US}>Contact Us</Link>
 							</MenubarTrigger>
 						</MenubarMenu>
-						<MenubarMenu>
-							<AuthDialog>
-								<MenubarTrigger className='bg-primary rounded-full px-6 py-2 text-slate-50 hover:text-slate-100 focus:text-slate-100 dark:text-slate-800 focus:dark:text-slate-900 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'>
-									Login
+						{loading ? null : user ? (
+							<MenubarMenu>
+								<MenubarTrigger>
+									<Avatar className='w-8 h-8 bg-gray-200'>
+										<AvatarImage src='/profile.png' alt='settings' />
+										<AvatarFallback>
+											{user?.name?.charAt(0).toUpperCase() || <User className='w-6 h-6' />}
+										</AvatarFallback>
+									</Avatar>
 								</MenubarTrigger>
-							</AuthDialog>
-						</MenubarMenu>
+								<MenubarContent>
+									<Link href={Paths.PROFILE}>
+										<MenubarItem>
+											<User className='w-4 h-4 mr-2' />
+											Account Details
+										</MenubarItem>
+									</Link>
+									<MenubarSeparator />
+									<MenubarItem>
+										<LogOut className='h-4 w-4 mr-2' />
+										Logout
+									</MenubarItem>
+								</MenubarContent>
+							</MenubarMenu>
+						) : (
+							<MenubarMenu>
+								<AuthDialog>
+									<MenubarTrigger className='bg-primary rounded-full px-6 py-2 text-slate-50 hover:text-slate-100 focus:text-slate-100 dark:text-slate-800 focus:dark:text-slate-900 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'>
+										Login
+									</MenubarTrigger>
+								</AuthDialog>
+							</MenubarMenu>
+						)}
 						<ThemeToggle hideText />
 					</div>
 				</div>
@@ -87,6 +134,31 @@ export default function Navbar() {
 						<Link href={Paths.CONTACT_US} onClick={() => setIsOpen(false)}>
 							Contact Us
 						</Link>
+						{loading ? null : user ? (
+							<div className='flex flex-row items-center mt-2'>
+								<Link
+									href='/profile'
+									className='text-sm underline border-r border-gray-700 pr-4'
+									onClick={() => setIsOpen(false)}
+								>
+									Profile
+								</Link>
+								<Button
+									variant='unstyled'
+									onClick={handleLogout}
+									className='flex items-center gap-2'
+								>
+									<LogOut className='h-4 w-4 mr-2' />
+									Logout
+								</Button>
+							</div>
+						) : (
+							<AuthDialog>
+								<Button className='bg-primary rounded-full px-6 py-2 text-slate-50 hover:text-slate-100 focus:text-slate-100 dark:text-slate-800 focus:dark:text-slate-900 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'>
+									Login
+								</Button>
+							</AuthDialog>
+						)}
 
 						<Button
 							variant='ghost'

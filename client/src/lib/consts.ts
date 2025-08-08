@@ -24,6 +24,7 @@ export const Paths = {
 	CONSULTATION: '/consultation',
 	SERVICES: '/services',
 	CONTACT_US: '/contact-us',
+	PROFILE: '/profile',
 };
 
 export const COLORS = {
