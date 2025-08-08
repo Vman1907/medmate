@@ -99,10 +99,12 @@ function FilteredCommandList(props: {
 				? [
 						{
 							heading: 'Doctors',
-							items: props.doctors.map((doctor) => ({
-								label: doctor.name,
-								value: doctor.id,
-							})),
+							items: props.doctors
+								.map((doctor) => ({
+									label: doctor.name,
+									value: doctor.id,
+								}))
+								.slice(0, 5),
 						},
 				  ]
 				: []),
@@ -110,10 +112,12 @@ function FilteredCommandList(props: {
 				? [
 						{
 							heading: 'Locations',
-							items: props.locations.map((location) => ({
-								label: location.name,
-								value: location.slug,
-							})),
+							items: props.locations
+								.map((location) => ({
+									label: location.name,
+									value: location.slug,
+								}))
+								.slice(0, 5),
 						},
 				  ]
 				: []),
@@ -121,10 +125,12 @@ function FilteredCommandList(props: {
 				? [
 						{
 							heading: 'Hospitals',
-							items: props.hospitals.map((hospital) => ({
-								label: hospital.name,
-								value: hospital.slug,
-							})),
+							items: props.hospitals
+								.map((hospital) => ({
+									label: hospital.name,
+									value: hospital.slug,
+								}))
+								.slice(0, 5),
 						},
 				  ]
 				: []),
@@ -132,10 +138,12 @@ function FilteredCommandList(props: {
 				? [
 						{
 							heading: 'Departments',
-							items: props.departments.map((department) => ({
-								label: department.name,
-								value: department.slug,
-							})),
+							items: props.departments
+								.map((department) => ({
+									label: department.name,
+									value: department.slug,
+								}))
+								.slice(0, 5),
 						},
 				  ]
 				: []),

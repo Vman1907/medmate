@@ -10,15 +10,21 @@ import {
 	SelectValue,
 } from '@/components/ui/select';
 import { FilterSelectedEvent } from '@/types/filters';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import SearchDialog from './SearchDialog';
 
 export default function ConsultationFilters() {
 	const [isSearchDialogOpen, setIsSearchDialogOpen] = useState(false);
 	const { locations, hospitals, departments } = useLocations();
+	const router = useRouter();
 
 	const handleSearchDialogClick = (event: FilterSelectedEvent) => {
 		setIsSearchDialogOpen(false);
+		const url = new URLSearchParams();
+		url.set('filter_type', event.type);
+		url.set('filter_value', event.value);
+		router.push(`/consultation?${url.toString()}`);
 	};
 
 	return (
