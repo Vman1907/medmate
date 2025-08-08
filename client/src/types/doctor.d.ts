@@ -17,4 +17,5 @@ export type DoctorType = {
 	reviews: number;
 	image: string;
 	price: number;
+	onCall: boolean;
 };

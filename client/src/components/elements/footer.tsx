@@ -50,13 +50,15 @@ export default function Footer() {
 						</div>
 					</div>
 					<div className='w-full md:w-2/5 flex flex-col items-center md:items-start text-center md:text-left'>
-						<Button
-							variant={'secondary'}
-							className='pr-8 pl-10 relative group dark:bg-slate-100 dark:hover:bg-slate-100 dark:text-slate-900 dark:hover:text-slate-900 '
-						>
-							Book A Consultation
-							<Phone className='w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 group-hover:translate-x-1 transition-all duration-300' />
-						</Button>
+						<Link href='/consultation'>
+							<Button
+								variant={'secondary'}
+								className='pr-8 pl-10 relative group dark:bg-slate-100 dark:hover:bg-slate-100 dark:text-slate-900 dark:hover:text-slate-900 '
+							>
+								Book A Consultation
+								<Phone className='w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 group-hover:translate-x-1 transition-all duration-300' />
+							</Button>
+						</Link>
 						<div className='mt-4 text-slate-50 dark:text-slate-50'>
 							<p>Stellar Coaching & Consulting</p>
 							<p>B-502, Sahara Apartment, Plot No. 11,</p>

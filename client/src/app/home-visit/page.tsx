@@ -52,12 +52,12 @@ export default async function Consultation({
 		<div className='relative pt-[5%] px-[5%] md:px-[7%]'>
 			<div className='flex flex-col gap-4'>
 				<div className='flex flex-col gap-2 relative'>
-					<HighlightSection nonHighlightedText='Healthcare at Your' highlightedText='Convenience' />
+					<HighlightSection nonHighlightedText='Healthcare at Your' highlightedText='Doorstep' />
 					<div className='text-2xl font-bold text-center text-primary'>
 						Find Your Perfect Doctor
 					</div>
 					<div className='text-sm text-center text-muted-foreground'>
-						Book experienced doctors for home visits in your region with just a few clicks.
+						Easily schedule in-clinic consultations with trusted doctors near you.{' '}
 					</div>
 					<div>
 						<ConsultationFilters />
@@ -71,8 +71,7 @@ export default async function Consultation({
 							</div>
 						) : (
 							<div className='mt-6 relative'>
-								<h3 className='text-2xl font-bold text-center mb-4 underline'>Top Results</h3>
-								<DoctorsList doctors={doctors} appointmentType='consultation' />
+								<DoctorsList doctors={doctors} appointmentType='home-visit' />
 							</div>
 						)}
 					</div>

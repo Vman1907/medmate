@@ -15,6 +15,7 @@ import {
 } from '@/lib/consts';
 import { homeFaqs } from '@/mock/faq';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const people = [
 	{
@@ -117,7 +118,9 @@ export default async function Home() {
 										className='!w-[10rem] !h-[10rem]'
 									>
 										<p className='font-bold'>Doctor Home Visit</p>
-										<Button className='h-min py-0 px-2'>Book Now</Button>
+										<Link href='/home-visit'>
+											<Button className='h-min py-0 px-2'>Book Now</Button>
+										</Link>
 									</DirectionAwareHover>
 								</div>
 								<div className='relative flex items-center justify-center'>
@@ -126,7 +129,9 @@ export default async function Home() {
 										className='!w-[10rem] !h-[10rem]'
 									>
 										<p className='font-bold'>Lab Test at Home</p>
-										<Button className='h-min py-0 px-2'>Book Now</Button>
+										<Link href='/home-visit'>
+											<Button className='h-min py-0 px-2'>Book Now</Button>
+										</Link>
 									</DirectionAwareHover>
 								</div>
 								<div className='relative flex items-center justify-center'>
@@ -135,7 +140,9 @@ export default async function Home() {
 										className='!w-[10rem] !h-[10rem]'
 									>
 										<p className='font-bold'>Nursing at Home</p>
-										<Button className='h-min py-0 px-2'>Book Now</Button>
+										<Link href='/home-visit'>
+											<Button className='h-min py-0 px-2'>Book Now</Button>
+										</Link>
 									</DirectionAwareHover>
 								</div>
 								<div className='relative flex items-center justify-center'>
@@ -144,7 +151,9 @@ export default async function Home() {
 										className='!w-[10rem] !h-[10rem]'
 									>
 										<p className='font-bold'>OPD consultation</p>
-										<Button className='h-min py-0 px-2'>Book Now</Button>
+										<Link href='/consultation'>
+											<Button className='h-min py-0 px-2'>Book Now</Button>
+										</Link>
 									</DirectionAwareHover>
 								</div>
 							</div>

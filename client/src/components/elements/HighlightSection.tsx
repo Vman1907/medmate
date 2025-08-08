@@ -2,7 +2,13 @@
 import { HeroHighlight, Highlight } from '@/components/ui/hero-highlight';
 import { motion } from 'motion/react';
 
-export function ConsultationHeading() {
+export function HighlightSection({
+	nonHighlightedText,
+	highlightedText,
+}: {
+	nonHighlightedText: string;
+	highlightedText: string;
+}) {
 	return (
 		<HeroHighlight containerClassName='h-[7rem]'>
 			<motion.h1
@@ -20,8 +26,8 @@ export function ConsultationHeading() {
 				}}
 				className='text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto '
 			>
-				Healthcare at Your
-				<Highlight className='text-black dark:text-white ml-4 px-4'>Convenience</Highlight>
+				{nonHighlightedText}
+				<Highlight className='text-black dark:text-white ml-4 px-4'>{highlightedText}</Highlight>
 			</motion.h1>
 		</HeroHighlight>
 	);

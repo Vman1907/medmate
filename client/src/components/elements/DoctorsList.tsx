@@ -19,7 +19,13 @@ import { useEffect, useId, useMemo, useRef, useState } from 'react';
 
 const DOCTORS_PER_PAGE = 10;
 
-export function DoctorsList({ doctors }: { doctors: DoctorType[] }) {
+export function DoctorsList({
+	doctors,
+	appointmentType,
+}: {
+	doctors: DoctorType[];
+	appointmentType: string;
+}) {
 	const [active, setActive] = useState<DoctorType | null>(null);
 	const ref = useRef<HTMLDivElement>(null);
 	const id = useId();
@@ -57,7 +63,6 @@ export function DoctorsList({ doctors }: { doctors: DoctorType[] }) {
 	}, [active]);
 
 	useOutsideClick(ref, () => setActive(null));
-	console.log('CURR PAGE', currentPage, totalPages);
 	return (
 		<>
 			<div>
@@ -114,24 +119,25 @@ export function DoctorsList({ doctors }: { doctors: DoctorType[] }) {
 										<div className=''>
 											<motion.h3
 												layoutId={`title-${active.id}`}
-												className='font-bold text-neutral-700 dark:text-neutral-200'
+												className='font-bold text-2xl text-neutral-700 dark:text-neutral-200'
 											>
 												{active.name}
 											</motion.h3>
 											<motion.p
 												layoutId={`description-${active.id}`}
-												className='text-neutral-600 dark:text-neutral-400'
+												className='text-neutral-600 dark:text-neutral-400 text-sm'
 											>
 												{active.education}
 											</motion.p>
 										</div>
 
-										<motion.button
+										<motion.a
+											href={`/book-appointment?appointment_type=${appointmentType}&doctor_id=${active.id}`}
 											layoutId={`button-${active.id}`}
 											className='px-4 py-3 text-sm rounded-full font-bold bg-primary text-white'
 										>
 											Book Appointment
-										</motion.button>
+										</motion.a>
 									</div>
 									<div className='pt-4 relative px-4'>
 										<motion.div

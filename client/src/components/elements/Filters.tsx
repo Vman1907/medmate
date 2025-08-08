@@ -146,7 +146,7 @@ export default function ConsultationFilters() {
 					</Select>
 				</div>
 			</div>
-			<div className='mx-auto w-fit'>
+			<div className='mx-auto w-fit mt-2'>
 				<p
 					className='text-sm text-muted-foreground text-center w-fit cursor-pointer'
 					onClick={resetFilters}

@@ -10,7 +10,7 @@ export default function LoadingBar({ height = 4 }: { height?: number }) {
 				`h-[${height}px]`
 			)}
 		>
-			<div className={cn('w-full bg-green-500 animate-pulse loading-width', `h-[${height}px]`)} />
+			<div className={cn('w-full bg-primary animate-pulse loading-width', `h-[${height}px]`)} />
 		</div>
 	);
 }
