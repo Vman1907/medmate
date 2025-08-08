@@ -58,7 +58,7 @@ const services = [
 
 export default function ServicesCard() {
 	return (
-		<div className='grid grid-cols-2 md:grid-cols-4 gap-8 items-center mx-auto'>
+		<div className='grid grid-cols-2 md:grid-cols-4 justify-between w-full gap-8'>
 			<Each
 				items={services}
 				render={(service) => (

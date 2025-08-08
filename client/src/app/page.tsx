@@ -209,9 +209,9 @@ export default async function Home() {
 			</div>
 			{/* --------------------------testimonials------------------- */}
 			<div>
-				<div className='text-center text-3xl'>Testimonials</div>
+				<div className='text-center text-3xl max-w-screen'>Testimonials</div>
 				<div>
-					<InfiniteMovingCards items={testimonials} />
+					{/* <InfiniteMovingCards items={testimonials} /> */}
 				</div>
 			</div>
 			{/* ---------------------------FAQ--------------------------- */}

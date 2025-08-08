@@ -51,7 +51,7 @@ const FaqItem: React.FC<FaqItemProps> = ({ title, content, isExpanded, onToggle 
 			onClick={onToggle}
 		>
 			<div className='flex items-center justify-between p-4 text-gray-900 dark:text-gray-100'>
-				<h2 className='m-0 text-sm font-semibold text-red-500'>{title}</h2>
+				<h2 className='m-0 text-sm font-semibold text-primary'>{title}</h2>
 				<motion.div variants={chevronVariants}>
 					<ChevronDown size={18} />
 				</motion.div>
