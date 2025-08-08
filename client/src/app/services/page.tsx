@@ -7,6 +7,7 @@ import {
 	SERVICE_3_IMAGE,
 	SERVICE_4_IMAGE,
 	SERVICE_5_IMAGE,
+	SERVICE_6_IMAGE,
 } from '@/lib/consts';
 import ServiceContainer from './_components/service-container';
 
@@ -64,7 +65,7 @@ const services: { title: string; description: string; items: string[]; image: st
 			'No need to step out to find a pharmacy',
 			'Reliable service across Bengaluru',
 		],
-		image: SERVICE_4_IMAGE,
+		image: SERVICE_5_IMAGE,
 	},
 	{
 		title: 'Ambulance Booking',
@@ -75,7 +76,7 @@ const services: { title: string; description: string; items: string[]; image: st
 			'For emergencies or planned hospital visits',
 			'Safe and comfortable transport across Bengaluru',
 		],
-		image: SERVICE_5_IMAGE,
+		image: SERVICE_6_IMAGE,
 	},
 ];
 
