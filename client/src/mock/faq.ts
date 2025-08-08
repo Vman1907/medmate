@@ -46,3 +46,29 @@ export const homeFaqs = [
 			'Yes, we provide pediatric care, including consultations, vaccinations, and general health check-ups..',
 	},
 ];
+
+export const consultationFaqs = [
+	{
+		title: 'What is the purpose of this platform?',
+		content: 'What is the purpose of this platform?',
+	},
+	{
+		title: 'How can I contribute to the platform?',
+		content:
+			'You can contribute by sharing your knowledge, research, or by collaborating with our community.',
+	},
+	{
+		title: 'Is there a fee to access the resources?',
+		content: 'No, all the resources are free to access for everyone.',
+	},
+	{
+		title: 'Can I use the resources for commercial purposes?',
+		content:
+			'Our resources are intended for personal and educational use. For commercial use, please contact us.',
+	},
+	{
+		title: 'How can I contact support?',
+		content:
+			'You can reach out to us via the contact form on our website or email us directly at support@example.com.',
+	},
+];

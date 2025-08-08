@@ -43,6 +43,10 @@ export default function ConsultationFilters() {
 		router.push(`/consultation?${url.toString()}`);
 	};
 
+	const resetFilters = () => {
+		router.push('/consultation');
+	};
+
 	return (
 		<div>
 			<PlaceholdersAndVanishInput
@@ -141,6 +145,14 @@ export default function ConsultationFilters() {
 						</SelectContent>
 					</Select>
 				</div>
+			</div>
+			<div className='mx-auto w-fit'>
+				<p
+					className='text-sm text-muted-foreground text-center w-fit cursor-pointer'
+					onClick={resetFilters}
+				>
+					Clear Filters
+				</p>
 			</div>
 		</div>
 	);

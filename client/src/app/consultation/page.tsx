@@ -1,5 +1,9 @@
+import FAQ from '@/components/elements/faq';
+import { FAQ_IMG } from '@/lib/consts';
 import { slugify } from '@/lib/utils';
+import { consultationFaqs } from '@/mock/faq';
 import { DoctorType } from '@/types/doctor';
+import Image from 'next/image';
 import { DOCTORS_MOCKED_DATA } from '../../mock/mockedData';
 import DoctorsGrid from './_components/DoctorsGrid';
 import { DoctorsList } from './_components/DoctorsList';
@@ -72,6 +76,31 @@ export default async function Consultation({
 						)}
 					</div>
 				</div>
+				<section
+					id='faq'
+					className='w-full min-h-screen flex flex-col items-center justify-center gap-0 my-24'
+				>
+					<p className='text-center text-3xl font-medium'>Frequently Asked Questions</p>
+					<div className='flex flex-row-reverse items-center justify-center gap-8 w-full'>
+						<div>
+							<Image
+								src={FAQ_IMG}
+								alt='FAQ'
+								width={500}
+								height={300}
+								className='mb-8 hidden lg:block'
+							/>
+						</div>
+
+						<div className='mt-[5%]'>
+							<div>
+								<div className='p-8'>
+									<FAQ items={consultationFaqs} />
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 	);

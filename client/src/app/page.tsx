@@ -1,4 +1,4 @@
-import FAQ from '@/components/elements/accordian-syntaxui';
+import FAQ from '@/components/elements/faq';
 import ServicesCard from '@/components/elements/services-card';
 import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import { Button } from '@/components/ui/button';

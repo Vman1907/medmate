@@ -18,7 +18,6 @@ const MOCKED_DATA = {
 		{ name: 'Apollo Hospital', slug: 'apollo-hospital' },
 		{ name: 'Fortis Hospital', slug: 'fortis-hospital' },
 		{ name: 'Manipal Hospital', slug: 'manipal-hospital' },
-		{ name: 'Apollo Hospital', slug: 'apollo-hospital' },
 		{ name: 'KIMS Hospital', slug: 'kims-hospital' },
 		{ name: 'Ruby Hall Clinic', slug: 'ruby-hall-clinic' },
 		{ name: 'Sterling Hospital', slug: 'sterling-hospital' },
