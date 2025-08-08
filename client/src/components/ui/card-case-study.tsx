@@ -17,7 +17,7 @@ const ContentCard: React.FC<CaseStudyCardProps> = ({ title, category, image, log
 		<div
 			className='relative flex h-full flex-col items-start justify-between rounded-lg bg-accent group w-full overflow-hidden'
 			style={{
-				backgroundImage: `url(${image})`,
+				backgroundImage: `url(/images/doctor_on_call.png)`, // Default image
 				backgroundSize: 'cover',
 				backgroundPosition: 'center',
 			}}
