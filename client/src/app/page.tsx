@@ -1,6 +1,8 @@
 import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import { Button } from '@/components/ui/button';
 import { DirectionAwareHover } from '@/components/ui/direction-aware-hover';
+import { FeaturesSectionDemo } from '@/components/ui/simple-hover-effect';
+import { InfiniteMovingCards } from '@/components/ui/testimonials';
 import {
 	HERO_IMAGE,
 	HOME_VISIT_IMAGE,
@@ -55,11 +57,44 @@ const people = [
 	},
 ];
 
+const testimonials = [
+	{
+		quote:
+			'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.',
+		name: 'Charles Dickens',
+		title: 'A Tale of Two Cities',
+	},
+	{
+		quote:
+			"To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+		name: 'William Shakespeare',
+		title: 'Hamlet',
+	},
+	{
+		quote: 'All that we see or seem is but a dream within a dream.',
+		name: 'Edgar Allan Poe',
+		title: 'A Dream Within a Dream',
+	},
+	{
+		quote:
+			'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.',
+		name: 'Jane Austen',
+		title: 'Pride and Prejudice',
+	},
+	{
+		quote:
+			'Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.',
+		name: 'Herman Melville',
+		title: 'Moby-Dick',
+	},
+];
+
 export default async function Home() {
 	return (
-		<div className='h-screen overflow-x-hidden overflow-y-scroll pt=[70px] min-h-screen'>
-			<div className='relative flex min-h-screen flex-col justify-center overflow-hidden w-full rounded-md z-0'>
-				<div className='relative flex w-full flex-1 justify-center isolate z-0 flex-col'>
+		<div className='px-8 flex flex-col items-center justify-center gap-8'>
+			{/* -------------------hero section------------------- */}
+			<div className='flex min-h-screen flex-col justify-center overflow-hidden w-full rounded-md z-0 '>
+				<div className='flex w-full flex-1 justify-center z-0 flex-col'>
 					<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full px-4 md:px-8 justify-center'>
 						<div className='text-center md:text-left col-span-1 lg:col-span-2 mt-8 md:mt-[10%] flex flex-col gap-4'>
 							<div className='text-4xl font-medium mb-8'>
@@ -145,6 +180,27 @@ export default async function Home() {
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			{/* ------------------- services section----------------------- */}
+			<div className='flex flex-col items-center justify-center gap-8 w-full'>
+				<div
+					className='
+					text-3xl text-center mb-4'
+				>
+					Compassionate Care, Anytime, Anywhere
+				</div>
+				<FeaturesSectionDemo />
+			</div>
+			{/* -------------------------features------------------------- */}
+			<div>
+				<div className='text-3xl text-center mb-4'>Why Choose Us</div>
+			</div>
+			{/* --------------------------testimonials------------------- */}
+			<div>
+				<div className='text-center text-3xl'>Testimonials</div>
+				<div>
+					<InfiniteMovingCards items={testimonials}/>
 				</div>
 			</div>
 		</div>

@@ -3,6 +3,7 @@ import Navbar from '@/components/elements/Navbar';
 import PrefetchRoutes from '@/components/elements/PrefetchRoutes';
 import Footer from '@/components/elements/footer';
 import Loading from '@/components/elements/loading';
+import { DotBackgroundDemo } from '@/components/ui/dot-background';
 import { ThemeProvider } from '@/components/ui/theme-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
@@ -41,7 +42,9 @@ export default async function RootLayout({
 					<PageLayout>
 						<TooltipProvider>
 							<Navbar />
-							<Suspense fallback={<Loading />}>{children}</Suspense>
+							{/* <DotBackgroundDemo> */}
+								<Suspense fallback={<Loading />}>{children}</Suspense>
+							{/* </DotBackgroundDemo> */}
 							<Footer />
 						</TooltipProvider>
 					</PageLayout>
