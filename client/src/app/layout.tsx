@@ -3,7 +3,6 @@ import Navbar from '@/components/elements/Navbar';
 import PrefetchRoutes from '@/components/elements/PrefetchRoutes';
 import Footer from '@/components/elements/footer';
 import Loading from '@/components/elements/loading';
-import { DotBackgroundDemo } from '@/components/ui/dot-background';
 import { ThemeProvider } from '@/components/ui/theme-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
@@ -16,8 +15,8 @@ import './globals.css';
 const poppins = Poppins({ weight: ['400', '500', '600', '700', '800', '900'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Wautopilot',
-	description: `Wautopilot provides businesses with advanced WhatsApp Business API solutions, enabling seamless bulk messaging, automated chatbots, and intuitive 2-way communication. Perfect for enhancing customer engagement, supporting multiple agents, and delivering personalized experiences at scale. Sign up today and revolutionize your business communication with Wautopilot.`,
+	title: 'Medmate',
+	description: `Medmate provides businesses with advanced WhatsApp Business API solutions, enabling seamless bulk messaging, automated chatbots, and intuitive 2-way communication. Perfect for enhancing customer engagement, supporting multiple agents, and delivering personalized experiences at scale. Sign up today and revolutionize your business communication with Medmate.`,
 };
 
 export default async function RootLayout({
@@ -43,7 +42,7 @@ export default async function RootLayout({
 						<TooltipProvider>
 							<Navbar />
 							{/* <DotBackgroundDemo> */}
-								<Suspense fallback={<Loading />}>{children}</Suspense>
+							<Suspense fallback={<Loading />}>{children}</Suspense>
 							{/* </DotBackgroundDemo> */}
 							<Footer />
 						</TooltipProvider>

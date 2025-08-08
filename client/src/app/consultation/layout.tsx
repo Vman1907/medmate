@@ -1,11 +1,9 @@
-import { UserDetailsProvider } from '@/components/context/user-details';
 import Loading from '@/components/elements/loading';
-import AuthService from '@/services/auth.service';
 import { Metadata } from 'next';
 import { Suspense } from 'react';
 
 export const metadata: Metadata = {
-	title: 'Dashboard • Wautopilot',
+	title: 'Consultation • Medmate',
 };
 
 export default async function Layout({
@@ -13,12 +11,11 @@ export default async function Layout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const [userDetails] = await Promise.all([AuthService.userDetails()]);
 
 	return (
 		<Suspense fallback={<Loading />}>
 			<main className='w-full h-full '>
-				<UserDetailsProvider data={{ ...userDetails! }}>{children}</UserDetailsProvider>
+				{children}
 			</main>
 		</Suspense>
 	);

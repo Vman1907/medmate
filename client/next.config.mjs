@@ -22,7 +22,7 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'api.wautopilot.com',
+                hostname: 'api.medmate.com',
                 port: '',
                 pathname: '/**',
             },
