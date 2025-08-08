@@ -13,6 +13,7 @@ import {
 	NURSING_AT_HOME_IMAGE,
 	OPD_CONSULTATION_IMAGE,
 } from '@/lib/consts';
+import { homeFaqs } from '@/mock/faq';
 import Image from 'next/image';
 
 const people = [
@@ -220,7 +221,11 @@ export default async function Home() {
 					/>
 
 					<div className='mt-[5%]'>
-						<FAQ />
+						<div>
+							<div className='p-8'>
+								<FAQ items={homeFaqs} />
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
