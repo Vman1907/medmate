@@ -68,6 +68,13 @@ export default function Navbar() {
 				</Button>
 				{isOpen && (
 					<div className='fixed top-0 left-0 bg-white dark:bg-slate-900 z-50 flex flex-col gap-4 p-4 min-w-[100vw] min-h-[100vh] justify-center items-center underline underline-offset-8'>
+						<Link
+							href={Paths.LANDING}
+							onClick={() => setIsOpen(false)}
+							className='inline-flex items-center gap-2 mb-32'
+						>
+							<Logo />
+						</Link>
 						<Link href={Paths.HOME_VISIT} onClick={() => setIsOpen(false)}>
 							Home Visit
 						</Link>

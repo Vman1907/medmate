@@ -1,9 +1,11 @@
+'use client';
 import Each from '@/components/containers/each';
 import { Button } from '@/components/ui/button';
 import { HOME_VISIT_IMAGE } from '@/lib/consts';
 import { cn } from '@/lib/utils';
 import { CircleCheckBig } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function ServiceContainer({
 	title,
@@ -39,8 +41,9 @@ export default function ServiceContainer({
 						)}
 					/>
 				</div>
-				<Button className='w-min'>Book Now</Button> 
-				{/* //TODO:Redirect to home visit booking page */}
+				<Link href='/book-appointment?appointment_type=home-visit'>
+					<Button className='w-min'>Book Now</Button>
+				</Link>
 			</div>
 			<div>
 				<Image
