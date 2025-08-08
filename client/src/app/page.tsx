@@ -1,3 +1,5 @@
+import FAQ from '@/components/elements/accordian-syntaxui';
+import ServicesCard from '@/components/elements/services-card';
 import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import { Button } from '@/components/ui/button';
 import { DirectionAwareHover } from '@/components/ui/direction-aware-hover';
@@ -86,6 +88,55 @@ const testimonials = [
 			'Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.',
 		name: 'Herman Melville',
 		title: 'Moby-Dick',
+	},
+];
+
+const faqs = [
+	{
+		question: 'What is Medmate?',
+		answer:
+			'Medmate is a healthcare service that brings medical care to your doorstep, offering 24/7 doctor home visits, nursing care, and blood sample collection.',
+	},
+	{
+		question: 'What services do you provide?',
+		answer:
+			'We offer: • Doctor home visits any time of the day or night. • Nursing care, like wound dressing, injections, and IV drips. • Blood sample collection and timely lab test reports.',
+	},
+	{
+		question: 'Are your services available around the clock?',
+		answer: 'Yes, we are open 24/7 for doctor home visits, so help is always just a call away.',
+	},
+	{
+		question: 'How soon can a doctor or nurse arrive?',
+		answer: 'Typically, we can send someone to your home within 60 to 90 minutes after booking.',
+	},
+	{
+		question: 'What medical issues can you handle at home?',
+		answer:
+			'We address non-emergency problems like fever, cough, cold, minor injuries, and chronic condition management.',
+	},
+	{
+		question: 'Can I call for a doctor late at night?',
+		answer: 'Absolutely. Our services are available even during odd hours.',
+	},
+	{
+		question: 'What does your nursing care include?',
+		answer:
+			'We offer services such as: • Giving injections and IV drips. • Post-surgery care. • Elderly care. • Nebulization and catheterization.',
+	},
+	{
+		question: 'How do I book a service?',
+		answer: 'You can book through our website, or by giving us a call.',
+	},
+	{
+		question: 'Are there extra charges for urgent or late-night visits?',
+		answer:
+			'There might be an additional fee for such cases. Our team will let you know before confirming your booking.',
+	},
+	{
+		question: 'Do you treat children at home?',
+		answer:
+			'Yes, we provide pediatric care, including consultations, vaccinations, and general health check-ups..',
 	},
 ];
 
@@ -183,26 +234,34 @@ export default async function Home() {
 				</div>
 			</div>
 			{/* ------------------- services section----------------------- */}
-			<div className='flex flex-col items-center justify-center gap-8 w-full'>
-				<div
-					className='
-					text-3xl text-center mb-4'
-				>
+			<div className='flex flex-col items-center justify-center gap-8 w-full min-h-screen'>
+				<div className='text-3xl text-center mb-4 flex flex-col items-center justify-center gap-8'>
 					Compassionate Care, Anytime, Anywhere
 				</div>
-				<FeaturesSectionDemo />
+				<ServicesCard />
 			</div>
 			{/* -------------------------features------------------------- */}
-			<div>
-				<div className='text-3xl text-center mb-4'>Why Choose Us</div>
+			<div className='min-h-screen flex flex-col items-center justify-center gap-8 w-full'>
+				<div className='text-3xl text-center'>Why Choose Us</div>
+				<FeaturesSectionDemo />
 			</div>
 			{/* --------------------------testimonials------------------- */}
 			<div>
 				<div className='text-center text-3xl'>Testimonials</div>
 				<div>
-					<InfiniteMovingCards items={testimonials}/>
+					<InfiniteMovingCards items={testimonials} />
 				</div>
 			</div>
+			{/* ---------------------------FAQ--------------------------- */}
+			<section
+				id='faq'
+				className='w-full min-h-screen flex flex-col items-center justify-center gap-8'
+			>
+				<p className='text-center text-4xl font-medium'>FAQ</p>
+				<div className='mt-[5%]'>
+					<FAQ />
+				</div>
+			</section>
 		</div>
 	);
 }

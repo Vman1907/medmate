@@ -1,60 +1,60 @@
 import { cn } from '@/lib/utils';
-import { IconMedicineSyrup, IconTableColumn } from '@tabler/icons-react';
-import { Database, Headset, HomeIcon, Microscope, Search, Stethoscope } from 'lucide-react';
+import { IconUserHeart } from '@tabler/icons-react';
+import { AlarmClock, Clock, Cpu, Heart, ShieldCheck, Syringe, Wallet } from 'lucide-react';
 
 export function FeaturesSectionDemo() {
 	const features = [
 		{
-			title: 'Doctor on Call',
-			description: 'Consult with expert doctors 24/7',
+			title: ' Excellence Assured',
+			description: 'Expert Doctors With Proven Experience Best Medical',
 			// header: <Skeleton />, // Uncomment if you want to use a skeleton
-			icon: <HomeIcon className='h-4 w-4 text-neutral-500' />,
+			icon: <ShieldCheck className='h-4 w-4 text-neutral-500' />,
 		},
 		{
-			title: 'Home Nursing Care',
-			description: 'Convenient doorstep delivery of essentials.',
+			title: 'Equipped & Ready',
+			description: 'Fully equipped facilities ensuring top-quality care anytime.',
 			// header: <Skeleton />,
-			icon: <Stethoscope className='h-4 w-4 text-neutral-500' />,
+			icon: <Syringe className='h-4 w-4 text-neutral-500' />,
 		},
 		{
-			title: 'Lab Tests at Home',
-			description: 'Hassle free sample collection and tests.',
+			title: 'Detailed Consultation',
+			description: 'Personalized treatment plans designed for your needs.',
 			// header: <Skeleton />,
-			icon: <Microscope className='h-4 w-4 text-neutral-500' />,
+			icon: <Heart className='h-4 w-4 text-neutral-500' />,
 		},
 		{
-			title: 'Emergency Ambulance',
-			description: 'Quick and reliable medical transport.',
+			title: 'Timely Assistance',
+			description: 'Fast response and minimal waiting time for patients',
 			// header: <Skeleton />,
-			icon: <IconTableColumn className='h-4 w-4 text-neutral-500' />,
+			icon: <AlarmClock className='h-4 w-4 text-neutral-500' />,
 		},
 		{
-			title: 'Medical delivery',
-			description: 'Convenient doorstep delivery of essentials.',
+			title: '24/7 Availability',
+			description: 'Round-the-clock medical support for all emergencies.',
 			// header: <Skeleton />,
-			icon: <IconMedicineSyrup className='h-4 w-4 text-neutral-500' />,
+			icon: <Clock className='h-4 w-4 text-neutral-500' />,
 		},
 		{
-			title: 'Secure Health Records',
-			description: 'Access your health records anytime, anywhere.',
+			title: 'Advanced Technology',
+			description: 'Modern diagnostic and treatment equipment at your service',
 			// header: <Skeleton />,
-			icon: <Database className='h-4 w-4 text-neutral-500' />,
+			icon: <Cpu className='h-4 w-4 text-neutral-500' />,
 		},
 		{
-			title: 'Specialist Finder',
-			description: 'Find the right specialist for your needs.',
+			title: 'Patient-Centered Care',
+			description: 'Compassionate approach focusing on patient comfort.',
 			// header: <Skeleton />,
-			icon: <Search className='h-4 w-4 text-neutral-500' />,
+			icon: <IconUserHeart className='h-4 w-4 text-neutral-500' />,
 		},
 		{
-			title: '24/7 Support',
-			description: 'Get assistance whenever you need it.',
+			title: 'Affordable Treatments',
+			description: 'Quality healthcare that fits your budget without compromise.',
 			// header: <Skeleton />,
-			icon: <Headset className='h-4 w-4 text-neutral-500' />,
+			icon: <Wallet className='h-4 w-4 text-neutral-500' />,
 		},
 	];
 	return (
-		<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-14 max-w-7xl mx-auto'>
+		<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  relative z-10 py-10 max-w-7xl mx-auto'>
 			{features.map((feature, index) => (
 				<Feature key={feature.title} {...feature} index={index} />
 			))}
