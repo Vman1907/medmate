@@ -96,7 +96,7 @@ const testimonials = [
 
 export default async function Home() {
 	return (
-		<div className='px-8 flex flex-col items-center justify-center gap-8'>
+		<main className='px-8 flex flex-col items-center justify-center gap-8'>
 			{/* -------------------hero section------------------- */}
 			<div className='flex min-h-screen flex-col justify-center overflow-hidden w-full rounded-md z-0 '>
 				<div className='flex w-full flex-1 justify-center z-0 flex-col'>
@@ -211,7 +211,7 @@ export default async function Home() {
 			<div>
 				<div className='text-center text-3xl max-w-screen'>Testimonials</div>
 				<div>
-					{/* <InfiniteMovingCards items={testimonials} /> */}
+					<InfiniteMovingCards items={testimonials} className='max-w-[90vw] ' />
 				</div>
 			</div>
 			{/* ---------------------------FAQ--------------------------- */}
@@ -233,13 +233,13 @@ export default async function Home() {
 
 					<div className='mt-[5%]'>
 						<div>
-							<div className='p-8'>
+							<div className=''>
 								<FAQ items={homeFaqs} />
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-		</div>
+		</main>
 	);
 }
