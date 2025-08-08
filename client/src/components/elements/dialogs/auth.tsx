@@ -97,7 +97,7 @@ export default function AuthDialog({ children }: { children: React.ReactNode }) 
 			<DialogTrigger asChild onClick={() => setIsOpen(true)}>
 				{children}
 			</DialogTrigger>
-			<DialogContent className='p-0 max-w-md'>
+			<DialogContent className='p-0 max-w-xs md:max-w-md rounded-2xl'>
 				<div className={cn('flex flex-col gap-6')}>
 					<Card>
 						<CardHeader>

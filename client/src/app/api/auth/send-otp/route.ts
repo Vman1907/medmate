@@ -45,6 +45,7 @@ export async function POST(request: NextRequest) {
 		}
 
 		await user.save();
+		console.log('OTP for user', user.email, otp);
 
 		// Send OTP email
 		const emailResult = await sendOTPEmail(email, otp, user.name || email);

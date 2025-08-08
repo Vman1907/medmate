@@ -6,7 +6,9 @@ import Image from 'next/image';
 export default function DoctorsGrid({ doctors }: { doctors: DoctorType[] }) {
 	return (
 		<div>
-			<h3 className='text-2xl font-bold text-primary'>Our Renowned Doctors</h3>
+			<h3 className='text-2xl font-bold text-primary text-center md:text-left '>
+				Our Renowned Doctors
+			</h3>
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:gap-4'>
 				<Each
 					items={doctors}

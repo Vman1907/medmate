@@ -116,7 +116,7 @@ export default function Navbar() {
 					</div>
 				</div>
 			</div>
-			<div className='md:hidden'>
+			<div className='md:hidden flex justify-between w-full items-center'>
 				<Button
 					variant='ghost'
 					className='bg-tr rounded-full p-2'
@@ -124,6 +124,37 @@ export default function Navbar() {
 				>
 					<MenuIcon className='w-6 h-6' />
 				</Button>
+				<div className='inline-flex flex-row items-center'>
+					{loading ? null : user ? (
+						<div className='ml-auto inline-flex flex-row items-center mt-2'>
+							<Link
+								href='/dashboard'
+								className='text-sm underline border-r border-gray-700 pr-4'
+								onClick={() => setIsOpen(false)}
+							>
+								Dashboard
+							</Link>
+							<Link
+								href='/profile'
+								className='text-sm underline border-r border-gray-700 pr-4'
+								onClick={() => setIsOpen(false)}
+							>
+								Profile
+							</Link>
+						</div>
+					) : (
+						<AuthDialog>
+							<Button className='bg-primary rounded-full px-6 py-2 text-slate-50 hover:text-slate-100 focus:text-slate-100 dark:text-slate-800 focus:dark:text-slate-900 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900 ml-auto'>
+								Login
+							</Button>
+						</AuthDialog>
+					)}
+					<div className='mt-2'>
+						<span className='relative'>
+							<ThemeToggle hideText />
+						</span>
+					</div>
+				</div>
 				{isOpen && (
 					<div className='fixed top-0 left-0 bg-white dark:bg-slate-900 z-50 flex flex-col gap-4 p-4 min-w-[100vw] min-h-[100vh] justify-center items-center underline underline-offset-8'>
 						<Link
@@ -150,31 +181,11 @@ export default function Navbar() {
 						<Link href={Paths.CONTACT_US} onClick={() => setIsOpen(false)}>
 							Contact Us
 						</Link>
-						{loading ? null : user ? (
-							<div className='flex flex-row items-center mt-2'>
-								<Link
-									href='/profile'
-									className='text-sm underline border-r border-gray-700 pr-4'
-									onClick={() => setIsOpen(false)}
-								>
-									Profile
-								</Link>
-								<Button
-									variant='unstyled'
-									onClick={handleLogout}
-									className='flex items-center gap-2'
-								>
-									<LogOut className='h-4 w-4 mr-2' />
-									Logout
-								</Button>
-							</div>
-						) : (
-							<AuthDialog>
-								<Button className='bg-primary rounded-full px-6 py-2 text-slate-50 hover:text-slate-100 focus:text-slate-100 dark:text-slate-800 focus:dark:text-slate-900 dark:bg-slate-100 dark:hover:bg-slate-100 dark:hover:text-slate-900'>
-									Login
-								</Button>
-							</AuthDialog>
-						)}
+
+						<Button variant='unstyled' onClick={handleLogout} className='flex items-center gap-2'>
+							<LogOut className='h-4 w-4 mr-0' />
+							Logout
+						</Button>
 
 						<Button
 							variant='ghost'
