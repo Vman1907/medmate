@@ -62,38 +62,6 @@ const people = [
 	},
 ];
 
-const testimonials = [
-	{
-		quote:
-			'It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.',
-		name: 'Charles Dickens',
-		title: 'A Tale of Two Cities',
-	},
-	{
-		quote:
-			"To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
-		name: 'William Shakespeare',
-		title: 'Hamlet',
-	},
-	{
-		quote: 'All that we see or seem is but a dream within a dream.',
-		name: 'Edgar Allan Poe',
-		title: 'A Dream Within a Dream',
-	},
-	{
-		quote:
-			'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.',
-		name: 'Jane Austen',
-		title: 'Pride and Prejudice',
-	},
-	{
-		quote:
-			'Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.',
-		name: 'Herman Melville',
-		title: 'Moby-Dick',
-	},
-];
-
 export default async function Home() {
 	return (
 		<main className='px-8 flex flex-col items-center justify-center gap-8'>
@@ -111,7 +79,7 @@ export default async function Home() {
 								tests to home nursing and OPD consultations. Convenient, reliable, and trusted by
 								1345+ happy patients.
 							</p>
-							<div className='flex flex-wrap md:flex-row items-center justify-center md:justify-start gap-4 mt-8'>
+							<div className='grid grid-cols-2 md:grid-cols-4 items-start justify-center md:justify-start gap-4 mt-8'>
 								<div className='relative flex items-center justify-center'>
 									<DirectionAwareHover
 										imageUrl={HOME_VISIT_IMAGE}
@@ -208,19 +176,19 @@ export default async function Home() {
 				<FeaturesSectionDemo />
 			</div>
 			{/* --------------------------testimonials------------------- */}
-			<div>
+			{/* <div>
 				<div className='text-center text-3xl max-w-screen'>Testimonials</div>
 				<div>
 					<InfiniteMovingCards items={testimonials} className='max-w-[90vw] ' />
 				</div>
-			</div>
+			</div> */}
 			{/* ---------------------------FAQ--------------------------- */}
 			<section
 				id='faq'
 				className='w-full min-h-screen flex flex-col items-center justify-center gap-8'
 			>
 				<p className='text-center text-4xl font-medium'>FAQ</p>
-				<div className='flex flex-row items-center justify-center gap-8 w-full'>
+				<div className='flex flex-row items-center justify-center md:gap-8 w-full'>
 					<div>
 						<Image
 							src={FAQ_IMG}

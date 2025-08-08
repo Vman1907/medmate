@@ -67,6 +67,7 @@ export default function ServicesCard() {
 						category={service.title}
 						image={service.images}
 						type='content'
+						link='/services'
 					/>
 				)}
 			/>
