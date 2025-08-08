@@ -10,6 +10,7 @@ export const NURSING_AT_HOME_IMAGE = '/images/nursing_at_home.png';
 export const OPD_CONSULTATION_IMAGE = '/images/opd_consultation.png';
 export const HOME_VISIT_IMAGE = '/images/home_visit.png';
 export const DOCTOR_ON_CALL_IMAGE = '/images/doctor_on_call.png';
+export const FAQ_IMG = '/images/faq_img.png';
 
 export const Paths = {
 	LANDING: '/',

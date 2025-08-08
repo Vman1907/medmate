@@ -6,6 +6,7 @@ import { DirectionAwareHover } from '@/components/ui/direction-aware-hover';
 import { FeaturesSectionDemo } from '@/components/ui/simple-hover-effect';
 import { InfiniteMovingCards } from '@/components/ui/testimonials';
 import {
+	FAQ_IMG,
 	HERO_IMAGE,
 	HOME_VISIT_IMAGE,
 	LAB_AT_HOME_IMAGE,
@@ -258,8 +259,12 @@ export default async function Home() {
 				className='w-full min-h-screen flex flex-col items-center justify-center gap-8'
 			>
 				<p className='text-center text-4xl font-medium'>FAQ</p>
-				<div className='mt-[5%]'>
-					<FAQ />
+				<div className='flex flex-row items-center justify-center gap-8 w-full'>
+					<Image src={FAQ_IMG} alt='FAQ' width={500} height={300} className='mb-8 hidden lg:block' />
+
+					<div className='mt-[5%]'>
+						<FAQ />
+					</div>
 				</div>
 			</section>
 		</div>
