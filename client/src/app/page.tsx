@@ -4,7 +4,6 @@ import { AnimatedTooltip } from '@/components/ui/animated-tooltip';
 import { Button } from '@/components/ui/button';
 import { DirectionAwareHover } from '@/components/ui/direction-aware-hover';
 import { FeaturesSectionDemo } from '@/components/ui/simple-hover-effect';
-import { InfiniteMovingCards } from '@/components/ui/testimonials';
 import {
 	FAQ_IMG,
 	HERO_IMAGE,
