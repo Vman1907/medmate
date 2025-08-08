@@ -1,11 +1,12 @@
 import { DoctorType } from '@/types/doctor';
 import { DOCTORS_MOCKED_DATA } from '../../mock/mockedData';
 import DoctorsGrid from './_components/DoctorsGrid';
+import { DoctorsList } from './_components/DoctorsList';
 import ConsultationFilters from './_components/filters';
 import { ConsultationHeading } from './_components/heading';
 
 const getDoctors = async () => {
-	return DOCTORS_MOCKED_DATA.slice(0, 5) as DoctorType[];
+	return DOCTORS_MOCKED_DATA as DoctorType[];
 };
 
 export default async function Consultation({
@@ -21,9 +22,9 @@ export default async function Consultation({
 	const doctors = await getDoctors();
 
 	return (
-		<div className='overflow-x-hidden overflow-y-scroll min-h-screen relative pt-[5%] px-[5%] md:px-[7%]'>
+		<div className='relative pt-[5%] px-[5%] md:px-[7%]'>
 			<div className='flex flex-col gap-4'>
-				<div className='flex flex-col gap-2'>
+				<div className='flex flex-col gap-2 relative'>
 					<ConsultationHeading />
 					<div className='text-2xl font-bold text-center text-primary'>
 						Find Your Perfect Doctor
@@ -34,15 +35,17 @@ export default async function Consultation({
 					<div>
 						<ConsultationFilters />
 					</div>
+				</div>
+				<div>
 					<div>
 						{!filter_type && !filter_value && (
-							<div className='mt-6 '>
+							<div className='mt-6 relative'>
 								<DoctorsGrid doctors={doctors.slice(0, 4)} />
 							</div>
 						)}
 						{filter_type && filter_value && (
-							<div className='mt-6 '>
-								<DoctorsGrid doctors={doctors.reverse().slice(0, 4)} />
+							<div className='mt-6 relative'>
+								<DoctorsList doctors={doctors} />
 							</div>
 						)}
 					</div>

@@ -92,55 +92,6 @@ const testimonials = [
 	},
 ];
 
-const faqs = [
-	{
-		question: 'What is Medmate?',
-		answer:
-			'Medmate is a healthcare service that brings medical care to your doorstep, offering 24/7 doctor home visits, nursing care, and blood sample collection.',
-	},
-	{
-		question: 'What services do you provide?',
-		answer:
-			'We offer: • Doctor home visits any time of the day or night. • Nursing care, like wound dressing, injections, and IV drips. • Blood sample collection and timely lab test reports.',
-	},
-	{
-		question: 'Are your services available around the clock?',
-		answer: 'Yes, we are open 24/7 for doctor home visits, so help is always just a call away.',
-	},
-	{
-		question: 'How soon can a doctor or nurse arrive?',
-		answer: 'Typically, we can send someone to your home within 60 to 90 minutes after booking.',
-	},
-	{
-		question: 'What medical issues can you handle at home?',
-		answer:
-			'We address non-emergency problems like fever, cough, cold, minor injuries, and chronic condition management.',
-	},
-	{
-		question: 'Can I call for a doctor late at night?',
-		answer: 'Absolutely. Our services are available even during odd hours.',
-	},
-	{
-		question: 'What does your nursing care include?',
-		answer:
-			'We offer services such as: • Giving injections and IV drips. • Post-surgery care. • Elderly care. • Nebulization and catheterization.',
-	},
-	{
-		question: 'How do I book a service?',
-		answer: 'You can book through our website, or by giving us a call.',
-	},
-	{
-		question: 'Are there extra charges for urgent or late-night visits?',
-		answer:
-			'There might be an additional fee for such cases. Our team will let you know before confirming your booking.',
-	},
-	{
-		question: 'Do you treat children at home?',
-		answer:
-			'Yes, we provide pediatric care, including consultations, vaccinations, and general health check-ups..',
-	},
-];
-
 export default async function Home() {
 	return (
 		<div className='px-8 flex flex-col items-center justify-center gap-8'>
@@ -260,7 +211,13 @@ export default async function Home() {
 			>
 				<p className='text-center text-4xl font-medium'>FAQ</p>
 				<div className='flex flex-row items-center justify-center gap-8 w-full'>
-					<Image src={FAQ_IMG} alt='FAQ' width={500} height={300} className='mb-8 hidden lg:block' />
+					<Image
+						src={FAQ_IMG}
+						alt='FAQ'
+						width={500}
+						height={300}
+						className='mb-8 hidden lg:block'
+					/>
 
 					<div className='mt-[5%]'>
 						<FAQ />

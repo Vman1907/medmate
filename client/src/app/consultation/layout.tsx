@@ -11,12 +11,9 @@ export default async function Layout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-
 	return (
 		<Suspense fallback={<Loading />}>
-			<main className='w-full h-full '>
-				{children}
-			</main>
+			<main>{children}</main>
 		</Suspense>
 	);
 }

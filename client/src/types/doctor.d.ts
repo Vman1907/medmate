@@ -6,7 +6,7 @@ export type DoctorType = {
 	hospital: string;
 	department: string;
 	gender: string;
-	experience: number;
+	experience: string;
 	education: string;
 	certifications: string[];
 	affiliations: string[];
@@ -16,4 +16,5 @@ export type DoctorType = {
 	rating: number;
 	reviews: number;
 	image: string;
+	price: number;
 };
