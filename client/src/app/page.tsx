@@ -212,13 +212,15 @@ export default async function Home() {
 			>
 				<p className='text-center text-4xl font-medium'>FAQ</p>
 				<div className='flex flex-row items-center justify-center gap-8 w-full'>
-					<Image
-						src={FAQ_IMG}
-						alt='FAQ'
-						width={500}
-						height={300}
-						className='mb-8 hidden lg:block'
-					/>
+					<div>
+						<Image
+							src={FAQ_IMG}
+							alt='FAQ'
+							width={500}
+							height={300}
+							className='mb-8 hidden lg:block'
+						/>
+					</div>
 
 					<div className='mt-[5%]'>
 						<div>
