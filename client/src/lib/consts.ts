@@ -11,6 +11,10 @@ export const OPD_CONSULTATION_IMAGE = '/images/opd_consultation.png';
 export const HOME_VISIT_IMAGE = '/images/home_visit.png';
 export const DOCTOR_ON_CALL_IMAGE = '/images/doctor_on_call.png';
 export const FAQ_IMG = '/images/faq_img.png';
+export const SERVICE_2_IMAGE = '/images/service_2.png';
+export const SERVICE_3_IMAGE = '/images/service_3.png';
+export const SERVICE_4_IMAGE = '/images/service_4.png';
+export const SERVICE_5_IMAGE = '/images/service_5.png';
 
 export const Paths = {
 	LANDING: '/',
