@@ -67,11 +67,19 @@ export default function Navbar() {
 					<MenuIcon className='w-6 h-6' />
 				</Button>
 				{isOpen && (
-					<div className='absolute top-0 left-0 bg-white dark:bg-slate-900 z-10 flex flex-col gap-4 p-4 min-w-[100vw] min-h-[100vh] justify-center items-center underline underline-offset-8'>
-						<Link href={Paths.HOME_VISIT}>Home Visit</Link>
-						<Link href={Paths.CONSULTATION}>Consultation</Link>
-						<Link href={Paths.SERVICES}>Services</Link>
-						<Link href={Paths.CONTACT_US}>Contact Us</Link>
+					<div className='fixed top-0 left-0 bg-white dark:bg-slate-900 z-50 flex flex-col gap-4 p-4 min-w-[100vw] min-h-[100vh] justify-center items-center underline underline-offset-8'>
+						<Link href={Paths.HOME_VISIT} onClick={() => setIsOpen(false)}>
+							Home Visit
+						</Link>
+						<Link href={Paths.CONSULTATION} onClick={() => setIsOpen(false)}>
+							Consultation
+						</Link>
+						<Link href={Paths.SERVICES} onClick={() => setIsOpen(false)}>
+							Services
+						</Link>
+						<Link href={Paths.CONTACT_US} onClick={() => setIsOpen(false)}>
+							Contact Us
+						</Link>
 
 						<Button
 							variant='ghost'

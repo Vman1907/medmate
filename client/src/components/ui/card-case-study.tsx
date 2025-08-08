@@ -22,11 +22,17 @@ const ContentCard: React.FC<CaseStudyCardProps> = ({ title, category, image, log
 				backgroundPosition: 'center',
 			}}
 		>
-			{image && <div className='opacity-0 group-hover:opacity-60 rounded-lg absolute inset-0  bg-black' />}
+			{image && (
+				<div className='opacity-0 group-hover:opacity-60 rounded-lg absolute inset-0  bg-black' />
+			)}
 
 			{logo && logo}
 			<div className='relative z-10 flex flex-col justify-end h-full w-full'>
-				{category && <div className='text-lg font-medium text-white dark:text-white from-transparent to-black bg-gradient-to-b p-4 block group-hover:hidden w-full'>{category}</div>}
+				{category && (
+					<div className='text-lg font-medium text-white dark:text-white from-transparent to-black bg-gradient-to-b p-4 block group-hover:hidden w-full'>
+						{category}
+					</div>
+				)}
 
 				{title && (
 					<div className='p-4 overflow-hidden hidden group-hover:block mr-2 text-sm font-bold leading-tight tracking-wide text-primary transition-all duration-300 ease-in-out'>
@@ -63,7 +69,7 @@ const HoverRevealSlip = ({ show }: { show: React.ReactNode }) => {
 			{/* Card container with slight book opening effect on hover */}
 			<div
 				className={cn(
-					'relative z-50 h-full w-full origin-left transition-transform duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateY(-30deg)]'
+					'relative z-40 h-full w-full origin-left transition-transform duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateY(-30deg)]'
 				)}
 			>
 				{/* Front side of the card */}
